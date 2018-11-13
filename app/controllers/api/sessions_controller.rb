@@ -1,19 +1,20 @@
-class Api::UsersController < ApplicationController
+class Api::SessionsController < ApplicationController
   before_action :ensure_logged_in, only: [:destroy]
 
   def create
     @user = User.find_by_credentials(user_params)
     if @user
       login(@user)
+      render :show
     else
-      render json: ['Invalid username or password']
+      render json: ['Invalid username or password'], status: 422
     end
   end
 
   def destroy
-    id = current_user.id
+    @user = current_user
     logout
-    render json: {id}
+    render 'api/users/delete'
   end
 
   private
