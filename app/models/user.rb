@@ -24,9 +24,9 @@ class User < ApplicationRecord
     SecureRandom::urlsafe_base64
   end
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
-    (user && user.is_password?(password)) ? user : nil
+  def self.find_by_credentials(params)
+    user = User.find_by(username: params[:username])
+    (user && user.is_password?(params[:password])) ? user : nil
   end
 
   def ensure_session_token
