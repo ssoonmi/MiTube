@@ -1,26 +1,68 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {UnAuthRoute, AuthRoute} from '../../util/route_util';
-import SessionFormContainer from '../session/session_form_container';
-import UserFormContainer from '../session/user_form_container';
+import ProfileDropdown from './profile_dropdown';
 
-const AuthSection = ({loggedIn, logout}) => {
-  if (loggedIn) {
-    return (
-      <div className="auth-section">
-        <button onClick={logout()}>Log Out</button>
-      </div>
-    )
-  } else {
-    return (
-      <div className="auth-section">
-        <Link to="/users/new">Sign Up</Link>
-        <Link to="/session/new">Sign In</Link>
-        <UnAuthRoute path="/users/new" component={UserFormContainer} />
-        <UnAuthRoute path="/session/new" component={SessionFormContainer} />
-      </div>
-    )
+
+class AuthSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showProfileDropdown: false,
+      showAuthForm: false,
+    };
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.setProfileBtnRef = this.setProfileBtnRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  profileButton(e) {
+    const {showProfileDropdown} = this.state;
+    if (!showProfileDropdown) {
+      this.setState({showProfileDropdown: !showProfileDropdown});
+      document.addEventListener('mousedown', this.handleClickOutside);
+    } else {
+      this.setState({showProfileDropdown: !showProfileDropdown});
+    }
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  setProfileBtnRef(node) {
+    this.profileBtnRef = node;
+  }
+
+  handleClickOutside(e) {
+    if (this.wrapperRef && !this.profileBtnRef.contains(e.target) && !this.wrapperRef.contains(e.target)) {
+      const {showProfileDropdown} = this.state;
+      this.setState({showProfileDropdown: !showProfileDropdown});
+      document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+  }
+
+  showAuthForm(e) {
+    const {showAuthForm} = this.state;
+    this.setState({showAuthForm: !showAuthForm});
+  }
+
+  logout(e) {
+    this.profileButton(e);
+    this.props.logout();
+  }
+
+  render() {
+    const {loggedIn,username,email} = this.props;
+    const {showProfileDropdown} = this.state;
+    return (
+      <div className="nav-auth-section">
+        {loggedIn ? <button ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>S</button> :
+      <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>}
+        {this.state.showProfileDropdown ? <ProfileDropdown wrapperRef={this.setWrapperRef} username={username} email={email} logout={this.logout.bind(this)}/> : null}
+      </div>
+    );
+  }
+
 
 };
 

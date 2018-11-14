@@ -7,10 +7,15 @@ const msp = state => ({
     username: "",
     password: "",
   },
-  formType: "Log In"
+  formType: "Sign In",
+  errors: state.errors.session,
 });
 
 const mdp = dispatch =>({
+  loginDemo: () => dispatch(login({
+    username: "DemoUser",
+    password: "password"
+  })),
   submitForm: (user) => dispatch(login(user))
 });
 

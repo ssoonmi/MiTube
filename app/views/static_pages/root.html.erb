@@ -1,7 +1,8 @@
-<% if logged_in? %>
-  <script type="text/javascript">
+<script type="text/javascript">
+  <% if logged_in? %>
     window.currentUserInfo = <%= render('/api/sessions/user.json.jbuilder', user: current_user).html_safe %>
-  </script>
-<% end %>
+  <% end %>
+  window.logo = "<%= image_url('MiTube-logo.png') %>"
+</script>
 
 <div id="root"></div>

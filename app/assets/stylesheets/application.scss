@@ -1,0 +1,245 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+:root {
+  --header-gray: #9f9f9f;
+  --profile-btn-color: #7a23a5;
+}
+
+.fas, .fa-sistrix {
+  color: var(--header-gray);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+button, a, input[type=submit] {
+  cursor: pointer;
+}
+
+body, nav, header, main, div, p, ul, li, span, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  height: 56px;
+  display: flex;
+  width: 100%;
+  padding: 0px 16px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px -3px rgba(17,17,17,0.06);
+}
+
+.sign-in-btn {
+  color: #2793e6;
+  font-weight: 400;
+  padding: 12px 16px;
+}
+
+main {
+  margin: 0 auto;
+  margin-top: 56px;
+  // going to be the border-top of the individual topic content boxes
+  border-top: 1px solid rgba(17,17,17,0.06);
+  width: 856px;
+}
+
+.session-form {
+  padding: 30px 20px 10px 20px;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.session-form h2 {
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.session-errors {
+  list-style: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.session-form label {
+  color: #4285f4;
+  font-size: 12px;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.session-form input[type=text] {
+  margin-bottom: 20px;
+}
+
+.session-form input[type=text], .session-form input[type=password] {
+  width: 100%;
+  border: 0;
+  font-size: 18px;
+  color: #202124;
+  border-bottom: 2px solid #4285f4;
+}
+
+.session-form a, .session-form .demo-user-btn {
+  cursor: pointer;
+  color: #4285f4;
+  font-weight: 500;
+}
+
+.session-form input[type=password] {
+  margin-bottom: 40px;
+}
+
+.session-form input:focus {
+  outline: none;
+}
+
+.session-form input[type=submit] {
+  background-color: #4285f4;
+  color: white;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.session-form-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left-section {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+.nav-left-section div {
+  padding: 8px;
+  font-size: 12px;
+  margin-right: 16px;
+}
+
+.nav-left-section img {
+  height: 20px;
+  width: auto;
+}
+
+.nav-left-section div i {
+  width: 24px;
+}
+
+.fa-youtube {
+  color: red;
+  margin-right: 2px;
+}
+
+.nav-auth-section {
+  position: relative;
+  width: auto;
+  margin: 0 14px;
+}
+
+.profile-btn {
+  background-color: var(--profile-btn-color);
+  color: white;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: lighter;
+  outline: none;
+  box-shadow: none;
+}
+
+.profile-btn:focus {
+  outline: none;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  position: absolute;
+  top: 40px;
+  right: -15px;
+  width: 300px;
+  box-shadow: 0px 8px 18px 6px rgba(17, 17, 17, 0.15);
+}
+
+.profile-dropdown li {
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  color: black;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.profile-dropdown i {
+  color: --header-gray;
+  margin-right: 32px;
+}
+
+.profile-dropdown .profile-name {
+  height: 72px;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+}
+
+.profile-dropdown li:hover {
+  background-color: #eaeaea;
+}
+
+.profile-name {
+  padding: 16px;
+}
+
+.profile-name button {
+  margin-right: 20px;
+  width: 42px;
+  height: 42px;
+}
+
+.profile-name div span{
+  display: block;
+}
+
+.profile-name div span:first-of-type {
+  font-size: 18px;
+  font-weight: 500;
+}

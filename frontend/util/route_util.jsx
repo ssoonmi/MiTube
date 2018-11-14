@@ -12,11 +12,11 @@ const Auth = ({component: Component, path, loggedIn, exact}) => (
   )}/>
 );
 
-const mspAuth = state => {
+const msp = state => {
   return {loggedIn: Boolean(state.session.id)};
 };
 
-export const AuthRoute = withRouter(connect(mspAuth, null)(Auth));
+export const AuthRoute = withRouter(connect(msp, null)(Auth));
 
 const UnAuth = ({component: Component, path, loggedIn, exact}) => (
   <Route path={path} exact={exact} render={(props) => (
@@ -28,8 +28,4 @@ const UnAuth = ({component: Component, path, loggedIn, exact}) => (
   )}/>
 );
 
-const mspUnAuth = state => {
-  return {loggedIn: Boolean(state.session.id)};
-};
-
-export const UnAuthRoute = withRouter(connect(mspUnAuth, null)(UnAuth));
+export const UnAuthRoute = withRouter(connect(msp, null)(UnAuth));
