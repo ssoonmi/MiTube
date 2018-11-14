@@ -23,3 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.sessionActions = sessionActions;
 });
+
+// git push -u origin auth
