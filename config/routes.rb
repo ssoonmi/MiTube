@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api, default: {format: :json} do
     resources :users, only: [:create, :update, :destroy, :index,:show]
+    get "/users/:username/channels", to: "channels#show_by_username", as: :channels_username
     resource :session, only: [:create, :destroy]
+    resources :channels, only: [:create, :update, :destroy, :index, :show]
   end
 end

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root/root';
 import * as sessionActions from './actions/session/session_actions';
+import * as channelsActions from './actions/channels/channels_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState={};
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.store = store;
   window.sessionActions = sessionActions;
+  window.channelsActions = channelsActions;
 });
 
 // git push -u origin auth

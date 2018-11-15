@@ -56,7 +56,7 @@ class AuthSection extends React.Component {
     const {showProfileDropdown} = this.state;
     return (
       <div className="nav-auth-section">
-        {loggedIn ? <button ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>S</button> :
+        {loggedIn ? <button ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>{username[0].toUpperCase()}</button> :
       <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>}
         {this.state.showProfileDropdown ? <ProfileDropdown wrapperRef={this.setWrapperRef} username={username} email={email} logout={this.logout.bind(this)}/> : null}
       </div>

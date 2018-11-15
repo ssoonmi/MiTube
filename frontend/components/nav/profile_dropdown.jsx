@@ -4,7 +4,7 @@ const ProfileDropdown = ({wrapperRef, username, email, logout}) => {
   return (
     <ul ref={wrapperRef} className="profile-dropdown">
       <li className="profile-name">
-        <button className="profile-btn">S</button>
+        <button className="profile-btn">{username[0].toUpperCase()}</button>
         <div>
           <span>{username}</span>
           <span>{email}</span>
