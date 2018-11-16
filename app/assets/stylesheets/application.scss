@@ -31,7 +31,7 @@ button, a, input[type=submit] {
   cursor: pointer;
 }
 
-body, nav, header, main, div, p, ul, li, span, h1, h2, h3, h4, h5, h6 {
+body, nav, header, main, a, div, p, ul, li, span, h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -178,6 +178,31 @@ main {
   position: relative;
   width: auto;
   margin: 0 14px;
+  display: flex;
+  align-items: center;
+}
+
+.new-video-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 8px;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-video-btn i {
+  position: relative;
+}
+
+.new-video-btn i span {
+  font-size: 13px;
+  font-weight: 700;
+  position: absolute;
+  right: 9.3px;
+  color: white;
 }
 
 .profile-btn {
@@ -186,10 +211,16 @@ main {
   width: 33px;
   height: 33px;
   border-radius: 50%;
+  border: 0;
+  outline: 0;
   font-size: 16px;
   font-weight: lighter;
-  outline: none;
   box-shadow: none;
+  background-size: cover;
+}
+
+.nav-auth-section > .profile-btn {
+  margin-left: 17px;
 }
 
 .profile-btn:focus {
@@ -205,6 +236,7 @@ main {
   top: 35px;
   right: -15px;
   width: 300px;
+  z-index: 1;
   box-shadow: 0px 8px 18px 6px rgba(17, 17, 17, 0.15);
 }
 
@@ -252,3 +284,7 @@ main {
   font-size: 18px;
   font-weight: 500;
 }
+
+// .profile-image {
+//   object-fit: scale-down;
+// }

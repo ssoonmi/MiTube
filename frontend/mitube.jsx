@@ -4,6 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root/root';
 import * as sessionActions from './actions/session/session_actions';
 import * as channelsActions from './actions/channels/channels_actions';
+import * as videosActions from './actions/videos/videos_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState={};
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.sessionActions = sessionActions;
   window.channelsActions = channelsActions;
+  window.videosActions = videosActions;
 });
 
 // git push -u origin auth

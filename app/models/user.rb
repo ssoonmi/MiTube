@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   has_many :channels
 
+  has_many :videos, through: :channels
+
+  has_one_attached :icon
+
   def self.generate_session_token
     SecureRandom::urlsafe_base64
   end

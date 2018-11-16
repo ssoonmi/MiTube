@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProfileDropdown = ({wrapperRef, username, email, logout}) => {
+const ProfileDropdown = ({wrapperRef, username, email, button, logout}) => {
   return (
     <ul ref={wrapperRef} className="profile-dropdown">
       <li className="profile-name">
-        <button className="profile-btn">{username[0].toUpperCase()}</button>
+        {button}
         <div>
           <span>{username}</span>
           <span>{email}</span>

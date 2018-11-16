@@ -14,4 +14,7 @@ class Channel < ApplicationRecord
   validates :name, :description, presence: true
 
   belongs_to :user
+  has_many :videos
+  has_one_attached :splash
+  has_one_attached :icon
 end

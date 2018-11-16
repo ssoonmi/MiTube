@@ -52,13 +52,32 @@ class AuthSection extends React.Component {
   }
 
   render() {
-    const {loggedIn,username,email} = this.props;
+    const {loggedIn,username,email,iconUrl, channelId} = this.props;
     const {showProfileDropdown} = this.state;
+    const newVideoBtn = (
+      <Link to={`/channels/${channelId}/videos/new`} className="new-video-btn">
+        <i className="fas fa-video">
+          <span>+</span>
+        </i>
+      </Link>
+    );
+    let button;
+    if (loggedIn) {
+      let content;
+      if (iconUrl) {
+        // content = <img className="profile-image" src={iconUrl}></img>
+      } else {
+        content = username[0].toUpperCase()
+      }
+      button = <button style={{backgroundImage: `url(${iconUrl})`}} ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>{content}</button>;
+    } else {
+      button = <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>;
+    }
     return (
       <div className="nav-auth-section">
-        {loggedIn ? <button ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>{username[0].toUpperCase()}</button> :
-      <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>}
-        {this.state.showProfileDropdown ? <ProfileDropdown wrapperRef={this.setWrapperRef} username={username} email={email} logout={this.logout.bind(this)}/> : null}
+        {newVideoBtn}
+        {button}
+        {this.state.showProfileDropdown ? <ProfileDropdown wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/> : null}
       </div>
     );
   }

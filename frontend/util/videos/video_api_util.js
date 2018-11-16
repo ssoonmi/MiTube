@@ -12,11 +12,13 @@ export const fetchVideo = (videoId) => {
   });
 };
 
-export const createVideo = (video) => {
+export const createVideo = (video, channelId) => {
   return $.ajax({
     method: "POST",
-    url: `/api/videos`,
-    data: {video}
+    url: `/api/channels/${channelId}/videos`,
+    data: video,
+    contentType: false,
+    processData: false
   });
 };
 
@@ -24,11 +26,13 @@ export const updateVideo = (video) => {
   return $.ajax({
     method: "PATCH",
     url: `/api/videos/${video.id}`,
-    data: {video}
+    data: video,
+    contentType: false,
+    processData: false
   });
 };
 
-export const removeVideo = (videoId) => {
+export const deleteVideo = (videoId) => {
   return $.ajax({
     method: "DELETE",
     url: `/api/videos/${videoId}`

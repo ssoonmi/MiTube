@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update, :destroy, :index,:show]
     get "/users/:username/channels", to: "channels#show_by_username", as: :channels_username
     resource :session, only: [:create, :destroy]
-    resources :channels, only: [:create, :update, :destroy, :index, :show]
+    resources :channels, only: [:create, :update, :destroy, :index, :show] do
+      resources :videos, only: [:index, :create]
+    end
+    resources :videos, only: [:update, :destroy, :show]
   end
 end

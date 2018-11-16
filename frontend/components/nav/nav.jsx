@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthSection from './auth_section';
 
-const Nav = ({loggedIn, logout, username, email}) => {
+const Nav = ({loggedIn, logout, username, email, channelId, iconUrl}) => {
   return (
     <nav>
       <div className="nav-left-section">
@@ -10,7 +10,7 @@ const Nav = ({loggedIn, logout, username, email}) => {
         <a href='#/'><img src={window.logo}/></a>
       </div>
       <div className="nav-search"></div>
-      <AuthSection loggedIn={loggedIn} logout={logout} username={username} email={email}/>
+      <AuthSection channelId={channelId} loggedIn={loggedIn} logout={logout} username={username} iconUrl={iconUrl} email={email}/>
     </nav>
   );
 };

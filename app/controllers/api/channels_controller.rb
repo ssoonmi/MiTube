@@ -55,6 +55,6 @@ class Api::ChannelsController < ApplicationController
   private
 
   def channel_params
-    params.require(:channel).permit(:name, :description, :splash_img_url)
+    params.require(:channel).permit(:name, :description, :icon, :splash)
   end
 end

@@ -1,6 +1,6 @@
 .channel-show {
   // for details of videos
-  color: #707070
+  color: #707070;
   // for title and headers
   color: #111111;
 }
@@ -54,7 +54,7 @@
   padding: 10px 16px;
   margin-right: 4px;
   text-transform: capitalize;
-  cursor: pointer;
+  // cursor: pointer;
   display: flex;
   justify-content: space-between;
 }
@@ -89,4 +89,24 @@
 
 .channel-show-nav li a:hover {
   color: black;
+}
+
+.channel-videos {
+  margin: 0 auto;
+  width: 856px;
+}
+
+.channel-videos-header {
+  margin: 8px 0px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.channel-videos-header h3 {
+  font-size: 16px;
+}
+
+.channel-videos-list {
+  list-style: none;
 }

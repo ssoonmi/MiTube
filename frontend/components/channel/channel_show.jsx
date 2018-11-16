@@ -30,9 +30,9 @@ class ChannelShow extends React.Component {
               </ul>
             </div>
           </section>
+          <Route path={`/channels/${channelId}/videos`} component={ChannelVideosContainer}/>
         </article>
       );
-      // <Route path={`/channels/${channelId}/videos`} component={ChannelVideosContainer}/>
     } else {
       return (
         <h2>Loading...</h2>
