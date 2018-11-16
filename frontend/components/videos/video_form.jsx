@@ -5,6 +5,10 @@ class VideoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.video;
+    this.state.videoIcon = false;
+    this.state.thumbnailIcon = false;
+    this.state.videoDrag = false;
+    this.state.thumbnailDrag = false;
   }
 
   handleSubmit(e) {
@@ -31,20 +35,104 @@ class VideoForm extends React.Component {
     }
   }
 
+  mouseEnterFile(field) {
+    return (e) => {
+      this.preventDefault(e);
+      this.setState({[field]: true});
+    }
+  }
+
+  mouseLeaveFile(field) {
+    return (e) => {
+      this.preventDefault(e);
+      this.setState({[field]: false});
+    }
+  }
+
+  dragEnterFile(field) {
+    return e => {
+      this.preventDefault(e);
+      this.highlight(e, field);
+    }
+  }
+
+  dragOverFile(field) {
+    return e => {
+      this.preventDefault(e);
+      this.highlight(e, field)
+    }
+  }
+
+  dragLeaveFile(field) {
+    return e => {
+      this.preventDefault(e);
+      this.unhighlight(e, field);
+    }
+  }
+
+  dropFile(field, highlightField) {
+    return (e) => {
+      debugger
+      this.preventDefault(e);
+      this.unhighlight(e, highlightField);
+      this.setState({[field]: e.dataTransfer.files[0]});
+    }
+  }
+
+  highlight(e, field) {
+    this.setState({[field]: true});
+  }
+
+  unhighlight(e, field) {
+    this.setState({[field]: false});
+  }
+
+  preventDefault(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   render() {
     return (
-      <div className="video-form-container">
-        <form onSubmit={this.handleSubmit.bind(this)} className="video-form">
-          <label>Video File</label>
-          <input onChange={this.handleFile("file")} type="file" className="video-upload-field" accept="video/*"/>
-          <label>Thumbnail File</label>
-          <input onChange={this.handleFile("thumbnail")} type="file" className="thumbnail-upload-field" accept="image/*"/>
-          <label>Title</label>
-          <input type="text" onChange={this.update("title")} value={this.state.title}/>
-          <label>Description</label>
-          <textarea onChange={this.update("description")} value={this.state.description}/>
-          <input type="submit" value="Publish"/>
-        </form>
+      <div className="video-form-background">
+        <div className="video-form-container">
+          <form onSubmit={this.handleSubmit.bind(this)} className="video-form">
+            <h2>Upload a New Video</h2>
+            <div className="submit-file-container">
+              <label
+                onDragEnter={this.dragEnterFile("videoDrag")}
+                onDragLeave={this.dragLeaveFile("videoDrag")}
+                onDragOver={this.dragOverFile("videoDrag")}
+                onDrop={this.dropFile("file", "videoDrag")}
+                onMouseEnter={this.mouseEnterFile("videoIcon")}
+                onMouseLeave={this.mouseLeaveFile("videoIcon")}
+                className="submit-file">
+                <i className={"fas fa-upload" + (this.state.videoIcon ? " submit-file-hover" : "")}></i>
+                <h4>Select video file to upload</h4>
+                <div className={this.state.videoDrag ? "submit-file-drag" : ""}>Or drag and drop video files</div>
+                <input onChange={this.handleFile("file")} type="file" className="video-upload-field" accept="video/*"/>
+              </label>
+            </div>
+            <div className="submit-file-container">
+              <label
+                onDragEnter={this.dragEnterFile("thumbnailDrag")}
+                onDragLeave={this.dragLeaveFile("thumbnailDrag")}
+                onDragOver={this.dragOverFile("thumbnailDrag")}
+                onDrop={this.dropFile("thumbnail", "thumbnailDrag")}
+                onMouseEnter={this.mouseEnterFile("thumbnailIcon")}
+                onMouseLeave={this.mouseLeaveFile("thumbnailIcon")}
+                className="submit-file">
+                <i className={"fas fa-upload" + (this.state.thumbnailIcon ? " submit-file-hover" : "")}></i>
+                <h4>Select thumbnail file to upload</h4>
+                <div className={this.state.thumbnailDrag ? "submit-file-drag" : ""}>Or drag and drop image files</div>
+                <input onChange={this.handleFile("thumbnail")} type="file" className="thumbnail-upload-field" accept="image/*"/>
+              </label>
+            </div>
+            <input placeholder="Title" type="text" onChange={this.update("title")} value={this.state.title}/>
+            <textarea placeholder="Description" onChange={this.update("description")} value={this.state.description}/>
+            <input type="submit" value="PUBLISH"/>
+          </form>
+        </div>
       </div>
     );
   }

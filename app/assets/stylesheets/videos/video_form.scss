@@ -1,0 +1,109 @@
+.video-form-background {
+  background-color: #f1f1f1;
+  padding: 15px 0px 40px 0px;
+}
+
+.video-form-container {
+  width: 750px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 2px lightgray;
+}
+
+.video-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 425px;
+  margin: 0 auto;
+}
+
+.video-form h2 {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+  padding-bottom: 10px;
+  width: inherit;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 15px;
+}
+
+.submit-file-container {
+  border: 1px solid lightgray;
+  width: inherit;
+  margin: 10px 0px;
+  padding: 30px 0px;
+  border-radius: 3px;
+}
+
+.submit-file-container:last-of-type {
+  margin-bottom: 20px;
+}
+
+.submit-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 50px;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.submit-file div {
+  color: gray;
+  font-size: 13px;
+  margin-top: 2px;
+  padding: 1px 5px;
+}
+
+.submit-file .submit-file-drag {
+  color: white;
+  background-color: green;
+  border-radius: 2px;
+}
+
+.submit-file .submit-file-hover {
+  color: red;
+}
+
+.submit-file h4 {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.submit-file input[type=file]{
+  display: none;
+}
+
+.video-form input[type=text], textarea {
+  width: 425px;
+  padding: 5px 10px 6px 10px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 13px;
+}
+
+.video-form input[type=text], textarea {
+  margin-bottom: 15px;
+}
+
+.video-form textarea {
+  resize: vertical;
+  height: 8em;
+}
+
+.video-form input[type=submit] {
+  background-color: #1e79cb;
+  color: white;
+  outline: none;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 14px;
+}
