@@ -77,7 +77,7 @@ class AuthSection extends React.Component {
       <div className="nav-auth-section">
         {newVideoBtn}
         {button}
-        {this.state.showProfileDropdown ? <ProfileDropdown wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/> : null}
+        <ProfileDropdown showProfileDropdown={this.state.showProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/>
       </div>
     );
   }

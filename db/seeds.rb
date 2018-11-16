@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Video.destroy_all
+Channel.destroy_all
+User.destroy_all
+
+user = User.create!(username: "DemoUser", password: "password", email: "demo_user@aa.io")
+
+channel = Channel.create!(name: "First Channel", description: "this is the first channel for demo user", user_id: user.id)
