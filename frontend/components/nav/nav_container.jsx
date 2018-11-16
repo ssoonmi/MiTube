@@ -23,10 +23,7 @@ const msp = (state, ownProps) => {
 };
 
 const mdp = dispatch => ({
-  logout: (e) => {
-    e.stopPropagation();
-    dispatch(logout());
-  }
+  logout: () => dispatch(logout())
 });
 
 export default connect(msp, mdp)(Nav);

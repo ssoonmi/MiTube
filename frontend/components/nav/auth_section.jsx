@@ -8,21 +8,14 @@ class AuthSection extends React.Component {
     super(props);
     this.state = {
       showProfileDropdown: false,
-      showAuthForm: false,
     };
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.setProfileBtnRef = this.setProfileBtnRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+    this.focusProfileDropdown = this.focusProfileDropdown.bind(this);
+    this.toggleProfileDropdown = this.toggleProfileDropdown.bind(this);
 
-  profileButton(e) {
-    const {showProfileDropdown} = this.state;
-    if (!showProfileDropdown) {
-      this.setState({showProfileDropdown: !showProfileDropdown});
-      document.addEventListener('mousedown', this.handleClickOutside);
-    } else {
-      this.setState({showProfileDropdown: !showProfileDropdown});
-    }
+    this.logout = this.logout.bind(this);
+    // this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   setWrapperRef(node) {
@@ -32,23 +25,44 @@ class AuthSection extends React.Component {
   setProfileBtnRef(node) {
     this.profileBtnRef = node;
   }
-
-  handleClickOutside(e) {
-    if (this.wrapperRef && !this.profileBtnRef.contains(e.target) && !this.wrapperRef.contains(e.target)) {
-      const {showProfileDropdown} = this.state;
-      this.setState({showProfileDropdown: !showProfileDropdown});
-      document.removeEventListener('mousedown', this.handleClickOutside);
-    }
-  }
-
-  showAuthForm(e) {
-    const {showAuthForm} = this.state;
-    this.setState({showAuthForm: !showAuthForm});
-  }
+  //
+  // profileButton(e) {
+  //   const {showProfileDropdown} = this.state;
+  //   if (!showProfileDropdown) {
+  //     this.setState({showProfileDropdown: !showProfileDropdown});
+  //     document.addEventListener('mousedown', this.handleClickOutside);
+  //   } else {
+  //     this.setState({showProfileDropdown: !showProfileDropdown});
+  //   }
+  // }
+  //
+  // handleClickOutside(e) {
+  //   e.stopPropagation();
+  //   if (this.wrapperRef && !this.profileBtnRef.contains(e.target) && !this.wrapperRef.contains(e.target)) {
+  //     const {showProfileDropdown} = this.state;
+  //     this.setState({showProfileDropdown: !showProfileDropdown});
+  //     document.removeEventListener('mousedown', this.handleClickOutside);
+  //   }
+  // }
+  //
+  // showAuthForm(e) {
+  //   const {showAuthForm} = this.state;
+  //   this.setState({showAuthForm: !showAuthForm});
+  // }
 
   logout(e) {
+    e.stopPropagation();
     this.profileButton(e);
-    this.props.logout(e);
+    this.props.logout();
+  }
+
+  toggleProfileDropdown(e) {
+    const {showProfileDropdown} = this.state;
+    this.setState({showProfileDropdown: !showProfileDropdown});
+  }
+
+  focusProfileDropdown() {
+    this.wrapperRef.focus();
   }
 
   render() {
@@ -69,7 +83,7 @@ class AuthSection extends React.Component {
       } else {
         content = username[0].toUpperCase()
       }
-      button = <button style={{backgroundImage: `url(${iconUrl})`}} ref={this.setProfileBtnRef} className="profile-btn" onClick={this.profileButton.bind(this)}>{content}</button>;
+      button = <button style={{backgroundImage: `url(${iconUrl})`}} ref={this.setProfileBtnRef} className="profile-btn" onClick={this.toggleProfileDropdown}>{content}</button>;
     } else {
       button = <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>;
     }
@@ -77,7 +91,7 @@ class AuthSection extends React.Component {
       <div className="nav-auth-section">
         {newVideoBtn}
         {button}
-        {this.state.showProfileDropdown ? <ProfileDropdown showProfileDropdown={this.state.showProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/> : null}
+        {this.state.showProfileDropdown ? <ProfileDropdown focusProfileDropdown={this.focusProfileDropdown} toggleProfileDropdown={this.toggleProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout}/> : null}
       </div>
     );
   }
