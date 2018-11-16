@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ProfileDropdown = ({wrapperRef, username, email, button, logout, showProfileDropdown}) => {
+const ProfileDropdown = ({wrapperRef, username, email, button, logout}) => {
   return (
-    <ul ref={wrapperRef} className={"profile-dropdown" + (showProfileDropdown ? "" : " hide-dropdown")}>
+    <ul ref={wrapperRef} className="profile-dropdown">
       <li className="profile-name">
         {button}
         <div>

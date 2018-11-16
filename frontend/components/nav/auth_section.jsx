@@ -48,7 +48,7 @@ class AuthSection extends React.Component {
 
   logout(e) {
     this.profileButton(e);
-    this.props.logout();
+    this.props.logout(e);
   }
 
   render() {
@@ -77,7 +77,7 @@ class AuthSection extends React.Component {
       <div className="nav-auth-section">
         {newVideoBtn}
         {button}
-        <ProfileDropdown showProfileDropdown={this.state.showProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/>
+        {this.state.showProfileDropdown ? <ProfileDropdown showProfileDropdown={this.state.showProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout.bind(this)}/> : null}
       </div>
     );
   }
