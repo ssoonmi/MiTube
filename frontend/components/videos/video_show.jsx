@@ -31,7 +31,9 @@ class VideoShow extends React.Component {
     }
     return (
       <article className="video-show-page">
-        {renderVideo}
+        <div className="video-show-page-video-container">
+          {renderVideo}
+        </div>
         <section className="video-show-info">
           <div className="video-show-info-header">
             <h2>{title}</h2>

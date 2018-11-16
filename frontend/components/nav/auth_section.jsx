@@ -52,8 +52,8 @@ class AuthSection extends React.Component {
 
   logout(e) {
     e.stopPropagation();
-    this.profileButton(e);
     this.props.logout();
+    this.toggleProfileDropdown();
   }
 
   toggleProfileDropdown(e) {
