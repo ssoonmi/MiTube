@@ -72,7 +72,6 @@ class VideoForm extends React.Component {
 
   dropFile(field, highlightField) {
     return (e) => {
-      debugger
       this.preventDefault(e);
       this.unhighlight(e, highlightField);
       this.setState({[field]: e.dataTransfer.files[0]});
