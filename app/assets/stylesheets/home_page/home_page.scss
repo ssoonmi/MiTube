@@ -10,7 +10,11 @@
 
 .channels-list-item {
   border-bottom: 1px solid lightgray;
-  width: 1070px;
+  width: 1075px;
+}
+
+.channels-list-item .video-list {
+  overflow: auto;
 }
 
 .channels-list-item-details {
@@ -43,7 +47,7 @@
 }
 
 .video-list-item-thumbnail-time {
-  
+
 }
 
 .video-list-item-info h4 {
