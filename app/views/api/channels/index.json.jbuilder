@@ -2,7 +2,12 @@ users_channel_ids = Hash.new{|h,k| h[k] = []}
 
 @channels.each do |channel|
   json.channels do
-    json.partial! 'api/channels/channel', channel: channel
+    json.partial! 'api/channels/channel', channel: channel, videos: channel.videos
+  end
+  channel.videos.each do |video|
+    json.videos do
+      json.partial! 'api/videos/video', video: video
+    end
   end
   users_channel_ids[channel.user_id].push(channel.id)
 end

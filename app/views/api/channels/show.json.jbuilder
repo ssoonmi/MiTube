@@ -1,5 +1,11 @@
 json.channels do
-  json.partial! 'api/channels/channel', channel: @channel
+  json.partial! 'api/channels/channel', channel: @channel, videos: @channel.videos
+end
+
+@channel.videos.each do |video|
+  json.videos do
+    json.partial! 'api/videos/video', video: video
+  end
 end
 
 json.users do

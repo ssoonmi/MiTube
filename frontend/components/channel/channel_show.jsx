@@ -12,6 +12,7 @@ class ChannelShow extends React.Component {
       let {channelId} = this.props;
       let {name, description, splash_img_url} = this.props.channel;
       let {username} = this.props.user;
+
       return (
         <article className="channel-show">
           <section className="channel-show-header">
@@ -30,7 +31,7 @@ class ChannelShow extends React.Component {
               </ul>
             </div>
           </section>
-          <Route path={`/channels/${channelId}/videos`} component={ChannelVideosContainer}/>
+          <Route path={`/channels/:channelId/videos`} component={ChannelVideosContainer}/>
         </article>
       );
     } else {

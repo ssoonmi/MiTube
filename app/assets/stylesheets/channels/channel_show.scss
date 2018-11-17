@@ -110,3 +110,12 @@
 .channel-videos-list {
   list-style: none;
 }
+
+.channel-videos .video-list {
+  width: 860px;
+  flex-wrap: wrap;
+}
+
+.channel-videos .video-list li {
+  height: 227px;
+}

@@ -1,19 +1,45 @@
 import React from 'react';
 import VideoThumbnail from '../videos/video_thumbnail';
+import {Link} from 'react-router-dom';
 
 class ChannelVideos extends React.Component {
   componentDidMount() {
-    
+
   }
 
   render() {
+    const {channel} = this.props;
+    let videoLis;
+    if (channel) {
+      const videoIds = channel.videoIds;
+      videoLis = videoIds.map((videoId, videoIdx) => {
+        const video = this.props.videos[videoId];
+        return (
+          <li key={videoIdx}><Link to={`/videos/${videoId}`}>
+            <img className="video-list-item-thumbnail" src={video.thumbnail}/>
+            <div className="video-list-item-thumbnail-time"></div>
+            <div className="video-list-item-info">
+              <h4>{video.title}</h4>
+              <div className="video-list-item-details">
+                <div>{channel.name}</div>
+                <span>8.2M views • </span>
+                <span>{"3 seconds ago"}</span>
+              </div>
+            </div>
+          </Link></li>
+        );
+      });
+    }
+
+    // <VideoThumbnail video={this.props.videos[videoId]}/>
+
     return (
       <section className="channel-videos">
         <div className="channel-videos-header">
           <h3>Uploads</h3>
         </div>
-        <ul className="channel-videos-list">
-          <VideoThumbnail/>
+        <ul className="video-list">
+          {videoLis}
         </ul>
       </section>
     );

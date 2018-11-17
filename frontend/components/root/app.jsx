@@ -7,6 +7,7 @@ import ChannelShowContainer from '../channel/channel_show_container';
 import VideoUploadFormContainer from '../videos/video_upload_form_container';
 import VideoShowContainer from '../videos/video_show_container';
 import ChannelCreationFormContainer from '../channel/channel_creation_form_container';
+import HomePage from '../home_page/home_page_container';
 import {Route, Switch} from 'react-router-dom';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <UnAuthRoute exact path="/channels/:channelId/videos/new" component={VideoUploadFormContainer}/>
           <Route path="/channels/:channelId" component={ChannelShowContainer}/>
           <Route path="/videos/:videoId" component={VideoShowContainer}/>
+          <Route path="/" component={HomePage}/>
         </Switch>
       </main>
     </>

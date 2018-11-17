@@ -1,10 +1,10 @@
-channels = user.channels
+channels = user.channels.includes(:videos)
 channelIds = []
 
 if channels
   json.channels do
     channels.each do |channel|
-      json.partial! 'api/channels/channel.json.jbuilder', channel: channel
+      json.partial! 'api/channels/channel.json.jbuilder', channel: channel, videos: channel.videos
       channelIds.push(channel.id)
     end
   end

@@ -6,10 +6,11 @@ import {fetchChannelVideos} from '../../actions/channels/channels_actions';
 
 const msp = (state, ownProps) => {
   const channelId = ownProps.match.params.channelId;
-  const videos = Object.values(state.entities.videos)
+  const videos = state.entities.videos;
   return {
     channelId,
     videos,
+    channel: state.entities.channels[channelId]
   };
 };
 
