@@ -3,5 +3,7 @@ json.videos do
 end
 
 json.channels do
-  json.partial! '/api/channels/channel', channel: @channel
+  json.set! @channel.id do
+    json.extract! @channel, :id, :name, :description, :user_id
+  end
 end
