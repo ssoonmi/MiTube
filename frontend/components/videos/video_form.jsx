@@ -9,6 +9,7 @@ class VideoForm extends React.Component {
     this.state.thumbnailIcon = false;
     this.state.videoDrag = false;
     this.state.thumbnailDrag = false;
+    this.state.disabled = false;
   }
 
   handleSubmit(e) {
@@ -20,6 +21,7 @@ class VideoForm extends React.Component {
     formData.append('video[thumbnail_url]', this.state.thumbnail_url);
     formData.append('video[file]', this.state.file);
     formData.append('video[thumbnail]', this.state.thumbnail);
+    this.setState({disabled: true});
     this.props.submitForm(formData, this.props.channelId);
   }
 
@@ -149,7 +151,7 @@ class VideoForm extends React.Component {
             </div>
             <input placeholder="Title" type="text" onChange={this.update("title")} value={this.state.title}/>
             <textarea placeholder="Description" onChange={this.update("description")} value={this.state.description}/>
-            <input type="submit" value="PUBLISH"/>
+            <input disabled={this.state.disabled} type="submit" value={this.state.disabled ? "PUBLISHING" : "PUBLISH"}/>
           </form>
         </div>
       </div>

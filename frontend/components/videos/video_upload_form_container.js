@@ -18,9 +18,10 @@ const msp = (state, ownProps) => {
   };
 };
 
-const mdp = dispatch => {
+const mdp = (dispatch, ownProps) => {
+  const history = ownProps.history;
   return {
-    submitForm: (video,channelId) => dispatch(createVideo(video, channelId))
+    submitForm: (video, channelId) => dispatch(createVideo(video, channelId, history))
   }
 };
 

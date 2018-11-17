@@ -47,9 +47,11 @@ export const fetchVideo = (videoId) => dispatch => {
   );
 };
 
-export const createVideo = (video, channelId) => dispatch => {
-  return VideoAPIUtil.createVideo(video, channelId).then((payload)=>
-    dispatch(receiveVideo(payload)), (response) =>
+export const createVideo = (video, channelId, history) => dispatch => {
+  return VideoAPIUtil.createVideo(video, channelId).then((payload)=> {
+    const videoId = Object.keys(payload.videos)[0];
+    history.push(`/videos/${videoId}`);
+  }, (response) =>
     dispatch(receiveVideoErrors(response.responseJSON))
   );
 };
