@@ -101,57 +101,61 @@ class ChannelForm extends React.Component {
       <div className="channel-form-background">
         <div className="channel-form-container">
           <form onSubmit={this.handleSubmit.bind(this)} className="channel-form">
-            <h2>Upload a New Video</h2>
-            <div className="submit-file-container">
-              <label
-                onDragEnter={this.dragEnterFile("iconDrag")}
-                onDragLeave={this.dragLeaveFile("iconDrag")}
-                onDragOver={this.dragOverFile("iconDrag")}
-                onDrop={this.dropFile("file", "iconDrag")}
-                onMouseEnter={this.mouseEnterFile("iconHover")}
-                onMouseLeave={this.mouseLeaveFile("iconHover")}
-                className="submit-file">
-                {this.state.icon ?
-                  (
-                    <h5>{this.state.icon.name}</h5>
-                  ) :
-                  (
-                    <>
-                      <i className={"fas fa-upload" + (this.state.iconHover ? " submit-file-hover" : "")}></i>
-                      <h4>Select channel's icon file to upload</h4>
-                      <div className={this.state.iconDrag ? "submit-file-drag" : ""}>Or drag and drop image files</div>
-                    </>
-                  )
-                }
-                <input onChange={this.handleFile("icon")} type="file" className="icon-upload-field" accept="channel/*"/>
-              </label>
-            </div>
-            <div className="submit-file-container">
-              <label
-                onDragEnter={this.dragEnterFile("splashDrag")}
-                onDragLeave={this.dragLeaveFile("splashDrag")}
-                onDragOver={this.dragOverFile("splashDrag")}
-                onDrop={this.dropFile("splash", "splashDrag")}
-                onMouseEnter={this.mouseEnterFile("splashHover")}
-                onMouseLeave={this.mouseLeaveFile("splashHover")}
-                className="submit-file">
-                {this.state.splash ?
-                  (
-                    <h5>{this.state.splash.name}</h5>
-                  ) :
-                  (
-                    <>
-                      <i className={"fas fa-upload" + (this.state.splashHover ? " submit-file-hover" : "")}></i>
-                      <h4>Select channel's splash file to upload</h4>
-                      <div className={this.state.splashDrag ? "submit-file-drag" : ""}>Or drag and drop image files</div>
-                    </>
-                  )
-                }
-                <input onChange={this.handleFile("splash")} type="file" className="splash-upload-field" accept="image/*"/>
-              </label>
-            </div>
+            <h2>Create a new Channel</h2>
             <input placeholder="Name" type="text" onChange={this.update("name")} value={this.state.name}/>
             <textarea placeholder="Description" onChange={this.update("description")} value={this.state.description}/>
+            <div className="channel-file-submit-container">
+              <div className="submit-file-container">
+                <label
+                  onDragEnter={this.dragEnterFile("iconDrag")}
+                  onDragLeave={this.dragLeaveFile("iconDrag")}
+                  onDragOver={this.dragOverFile("iconDrag")}
+                  onDrop={this.dropFile("file", "iconDrag")}
+                  onMouseEnter={this.mouseEnterFile("iconHover")}
+                  onMouseLeave={this.mouseLeaveFile("iconHover")}
+                  className="submit-file">
+                  {this.state.icon ?
+                    (
+                      <h5>{this.state.icon.name}</h5>
+                    ) :
+                    (
+                      <>
+                        <i className={"fas fa-upload" + (this.state.iconHover ? " submit-file-hover" : "")}></i>
+                        <span>OPTIONAL</span>
+                        <h4>Select channel's icon file to upload</h4>
+                        <div className={this.state.iconDrag ? "submit-file-drag" : ""}>Or drag and drop image files</div>
+                      </>
+                    )
+                  }
+                  <input onChange={this.handleFile("icon")} type="file" className="icon-upload-field" accept="channel/*"/>
+                </label>
+              </div>
+              <div className="submit-file-container">
+                <label
+                  onDragEnter={this.dragEnterFile("splashDrag")}
+                  onDragLeave={this.dragLeaveFile("splashDrag")}
+                  onDragOver={this.dragOverFile("splashDrag")}
+                  onDrop={this.dropFile("splash", "splashDrag")}
+                  onMouseEnter={this.mouseEnterFile("splashHover")}
+                  onMouseLeave={this.mouseLeaveFile("splashHover")}
+                  className="submit-file">
+                  {this.state.splash ?
+                    (
+                      <h5>{this.state.splash.name}</h5>
+                    ) :
+                    (
+                      <>
+                        <i className={"fas fa-upload" + (this.state.splashHover ? " submit-file-hover" : "")}></i>
+                        <span>OPTIONAL</span>
+                        <h4>Select channel's splash file to upload</h4>
+                        <div className={this.state.splashDrag ? "submit-file-drag" : ""}>Or drag and drop image files</div>
+                      </>
+                    )
+                  }
+                  <input onChange={this.handleFile("splash")} type="file" className="splash-upload-field" accept="image/*"/>
+                </label>
+              </div>
+            </div>
             <input disabled={this.state.disabled} type="submit" value={this.state.disabled ? "CREATING CHANNEL" : "CREATE CHANNEL"}/>
           </form>
         </div>
