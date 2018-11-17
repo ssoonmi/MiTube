@@ -68,8 +68,9 @@ class AuthSection extends React.Component {
   render() {
     const {loggedIn,username,email,iconUrl, channelId} = this.props;
     const {showProfileDropdown} = this.state;
+    const newVideoLink = channelId ? `/channels/${channelId}/videos/new` : `/channels/new`;
     const newVideoBtn = (
-      <Link to={`/channels/${channelId}/videos/new`} className="new-video-btn">
+      <Link to={newVideoLink} className="new-video-btn">
         <i className="fas fa-video">
           <span>+</span>
         </i>

@@ -6,6 +6,7 @@ import UserFormContainer from '../session/user_form_container';
 import ChannelShowContainer from '../channel/channel_show_container';
 import VideoUploadFormContainer from '../videos/video_upload_form_container';
 import VideoShowContainer from '../videos/video_show_container';
+import ChannelCreationFormContainer from '../channel/channel_creation_form_container';
 import {Route, Switch} from 'react-router-dom';
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Switch>
           <AuthRoute exact path="/users/new" component={UserFormContainer} />
           <AuthRoute exact path="/session/new" component={SessionFormContainer} />
+          <UnAuthRoute exact path="/channels/new" component={ChannelCreationFormContainer} />
           <UnAuthRoute exact path="/channels/:channelId/videos/new" component={VideoUploadFormContainer}/>
           <Route path="/channels/:channelId" component={ChannelShowContainer}/>
           <Route path="/videos/:videoId" component={VideoShowContainer}/>

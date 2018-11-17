@@ -41,12 +41,10 @@ export const fetchChannels = (filters) => dispatch => {
   });
 };
 
-export const createChannel = (channel) => dispatch => {
+export const createChannel = (channel, history) => dispatch => {
   return ChannelsAPIUtil.createChannel(channel).then((payload)=>{
-    dispatch({
-      type: RECEIVE_CHANNEL,
-      payload
-    });
+    const channelId = Object.keys(payload.channels)[0];
+    history.push(`/channels/${channelId}`);
   });
 };
 

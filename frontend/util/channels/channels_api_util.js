@@ -31,7 +31,19 @@ export const createChannel = (channel) => {
   return $.ajax({
     type: "POST",
     url: `api/channels/`,
-    data: {channel}
+    data: channel,
+    contentType: false,
+    processData: false
+  });
+};
+
+export const updateChannel = (channel, channelId) => {
+  return $.ajax({
+    type: "POST",
+    url: `api/channels/${channelId}`,
+    data: channel,
+    contentType: false,
+    processData: false
   });
 };
 
