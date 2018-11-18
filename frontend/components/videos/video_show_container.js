@@ -14,7 +14,8 @@ const msp = (state, ownProps) => {
   return {
     video,
     channel,
-    videoId
+    videoId,
+    dropdownShow: state.ui.dropdown,
   };
 };
 

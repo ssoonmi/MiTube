@@ -1,6 +1,7 @@
 import React from 'react';
 import VideoThumbnail from '../videos/video_thumbnail';
 import {Link} from 'react-router-dom';
+import TimeAgo from '../util/time_ago';
 
 class ChannelVideos extends React.Component {
   componentDidMount() {
@@ -21,9 +22,8 @@ class ChannelVideos extends React.Component {
             <div className="video-list-item-info">
               <h4>{video.title}</h4>
               <div className="video-list-item-details">
-                <div>{channel.name}</div>
                 <span>8.2M views • </span>
-                <span>{"3 seconds ago"}</span>
+                <span><TimeAgo time={video.created_at}/></span>
               </div>
             </div>
           </Link></li>

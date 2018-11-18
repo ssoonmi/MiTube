@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 // import VideoThumbnail from '../videos/video_thumbnail';
+import TimeAgo from '../util/time_ago';
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -11,6 +12,9 @@ class HomePage extends React.Component {
     const {channels, videos} = this.props;
     let timeNow = new Date();
     const channelLis = channels.map((channel, idx) => {
+      const iconUrl = channel.icon;
+      const content = iconUrl ? undefined : channel.name[0].toUpperCase();
+      const button = <button style={content ? {} : {backgroundImage: `url(${iconUrl})`}} className="profile-btn">{content}</button>;
       const videoIds = channel.videoIds;
       if (videoIds && videoIds.length != 0){
         const videoLis = videoIds.map((videoId, videoIdx) => {
@@ -22,9 +26,9 @@ class HomePage extends React.Component {
               <div className="video-list-item-info">
                 <h4>{video.title}</h4>
                 <div className="video-list-item-details">
-                  <div>{channel.name}</div>
+                  <div><Link to={`/channels/${channel.id}`}>{channel.name}</Link></div>
                   <span>8.2M views • </span>
-                  <span>{"3 seconds ago"}</span>
+                  <span>{<TimeAgo time={video.created_at}/>}</span>
                 </div>
               </div>
             </Link></li>
@@ -33,9 +37,10 @@ class HomePage extends React.Component {
         // <VideoThumbnail video={this.props.videos[videoId]}/>
         return (
           <li key={channel.id} className="channels-list-item">
-            <div className="channels-list-item-details">
-              <Link to={`/channels/${channel.id}`}><h3>{channel.name}</h3></Link>
-            </div>
+            <Link to={`/channels/${channel.id}`}className="channels-list-item-details">
+              {button}
+              <h3>{channel.name}</h3>
+            </Link>
             <ul className="video-list">
               {videoLis}
             </ul>

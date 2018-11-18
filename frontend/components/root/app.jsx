@@ -16,7 +16,7 @@ const App = () => {
       <Switch>
         <Route exact path="/users/new" render={()=>(null)}/>
         <Route exact path="/session/new" render={()=>(null)}/>
-        <Route path="/" component={NavContainer}/>
+        <Route path="/" render={() => <NavContainer /> } />
       </Switch>
       <main>
         <Switch>
@@ -25,7 +25,7 @@ const App = () => {
           <UnAuthRoute exact path="/channels/new" component={ChannelCreationFormContainer} />
           <UnAuthRoute exact path="/channels/:channelId/videos/new" component={VideoUploadFormContainer}/>
           <Route path="/channels/:channelId" component={ChannelShowContainer}/>
-          <Route path="/videos/:videoId" component={VideoShowContainer}/>
+          <Route path="/videos/:videoId" render={(props) => <VideoShowContainer {...props}/>} />
           <Route path="/" component={HomePage}/>
         </Switch>
       </main>

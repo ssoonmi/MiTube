@@ -25,6 +25,7 @@
 
 .channels-list-item-details h3 {
   font-size: 16px;
+  margin-left: 8px;
 }
 
 .video-list {
@@ -58,4 +59,12 @@
 .video-list-item-details {
   font-size: 13px;
   color: gray;
+}
+
+.video-list-item-details a {
+  color: gray;
+}
+
+.video-list-item-details a:hover {
+  color: black;
 }

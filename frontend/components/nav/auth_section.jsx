@@ -8,6 +8,7 @@ class AuthSection extends React.Component {
     super(props);
     this.state = {
       showProfileDropdown: false,
+      waitProfileDropdown: false
     };
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.setProfileBtnRef = this.setProfileBtnRef.bind(this);
@@ -55,10 +56,22 @@ class AuthSection extends React.Component {
     this.props.logout();
     this.toggleProfileDropdown();
   }
+  // .classList.contains("nav-profile-btn"))
+
+  allowDropdown() {
+    this.setState({waitProfileDropdown: false});
+  }
 
   toggleProfileDropdown(e) {
-    const {showProfileDropdown} = this.state;
-    this.setState({showProfileDropdown: !showProfileDropdown});
+    const {showProfileDropdown, waitProfileDropdown} = this.state;
+    if (showProfileDropdown ) {
+      this.props.hideDropdown();
+      this.setState({showProfileDropdown: !showProfileDropdown, waitProfileDropdown: true});
+      setTimeout(this.allowDropdown.bind(this), 200);
+    } else if (!showProfileDropdown && !waitProfileDropdown) {
+      this.props.showDropdown();
+      this.setState({showProfileDropdown: !showProfileDropdown});
+    }
   }
 
   focusProfileDropdown() {
@@ -66,7 +79,7 @@ class AuthSection extends React.Component {
   }
 
   render() {
-    const {loggedIn,username,email,iconUrl, channelId} = this.props;
+    const {loggedIn,username,email,iconUrl, channelId, history} = this.props;
     const {showProfileDropdown} = this.state;
     const newVideoLink = channelId ? `/channels/${channelId}/videos/new` : `/channels/new`;
     const newVideoBtn = (
@@ -78,13 +91,8 @@ class AuthSection extends React.Component {
     );
     let button;
     if (loggedIn) {
-      let content;
-      if (iconUrl) {
-        // content = <img className="profile-image" src={iconUrl}></img>
-      } else {
-        content = username[0].toUpperCase()
-      }
-      button = <button style={{backgroundImage: `url(${iconUrl})`}} ref={this.setProfileBtnRef} className="profile-btn" onClick={this.toggleProfileDropdown}>{content}</button>;
+      const content = iconUrl ? undefined : username[0].toUpperCase();
+      button = <button style={content ? {} : {backgroundImage: `url(${iconUrl})`}} ref={this.setProfileBtnRef} className="nav-profile-btn profile-btn" onClick={showProfileDropdown ? null : this.toggleProfileDropdown}>{content}</button>;
     } else {
       button = <Link to="/session/new" className="sign-in-btn">SIGN IN</Link>;
     }
@@ -92,7 +100,7 @@ class AuthSection extends React.Component {
       <div className="nav-auth-section">
         {newVideoBtn}
         {button}
-        {this.state.showProfileDropdown ? <ProfileDropdown focusProfileDropdown={this.focusProfileDropdown} toggleProfileDropdown={this.toggleProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} logout={this.logout}/> : null}
+        {this.state.showProfileDropdown ? <ProfileDropdown focusProfileDropdown={this.focusProfileDropdown} toggleProfileDropdown={this.toggleProfileDropdown} wrapperRef={this.setWrapperRef} username={username} button={button} email={email} channelId={channelId} history={history} logout={this.logout}/> : null}
       </div>
     );
   }

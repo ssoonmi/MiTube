@@ -1,6 +1,8 @@
 import Nav from './nav';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/session/session_actions';
+import {showDropdown, hideDropdown} from '../../actions/ui/dropdown_actions';
+import {withRouter} from 'react-router-dom';
 
 const msp = (state, ownProps) => {
   let username;
@@ -18,12 +20,15 @@ const msp = (state, ownProps) => {
     username,
     email,
     iconUrl,
-    channelId
+    channelId,
+    history: ownProps.history
   };
 };
 
 const mdp = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  showDropdown: () => dispatch(showDropdown()),
+  hideDropdown: () => dispatch(hideDropdown()),
 });
 
-export default connect(msp, mdp)(Nav);
+export default withRouter(connect(msp, mdp)(Nav));

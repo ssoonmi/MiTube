@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class ProfileDropdown extends React.Component {
   constructor(props) {
@@ -9,7 +10,12 @@ class ProfileDropdown extends React.Component {
   }
 
   render() {
-    const {wrapperRef, username, email, button, toggleProfileDropdown, logout} = this.props;
+    const {wrapperRef, username, email, button, toggleProfileDropdown, logout, channelId, history} = this.props;
+    const myChannelLink = channelId ? `/channels/${channelId}` : "/channels/new";
+    const myChannelOnClick = () => {
+      this.props.toggleProfileDropdown();
+      this.props.history.push(myChannelLink);
+    };
     return (
       <ul tabIndex="0" onBlur={toggleProfileDropdown} ref={wrapperRef} className="profile-dropdown">
         <li className="profile-name">
@@ -19,9 +25,13 @@ class ProfileDropdown extends React.Component {
             <span>{email}</span>
           </div>
         </li>
+        <li onClick={myChannelOnClick.bind(this)}>
+          <i class="fas fa-user-circle"></i>
+          <span>My Channel</span>
+        </li>
         <li onClick={logout}>
           <i className="fas fa-sign-out-alt"></i>
-          Sign Out
+          <span>Sign Out</span>
         </li>
       </ul>
     );
