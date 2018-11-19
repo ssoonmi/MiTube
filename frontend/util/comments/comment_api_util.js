@@ -1,14 +1,14 @@
 export const fetchVideoComments = videoId => {
   return $.ajax({
     method: "GET",
-    url: `/api/video/${videoId}/comments/`
+    url: `/api/videos/${videoId}/comments/`
   });
 };
 
 export const createComment = comment => {
   return $.ajax({
     method: "POST",
-    url: `/api/video/${comment.video_id}/comments`,
+    url: `/api/videos/${comment.video_id}/comments`,
     data: {comment}
   });
 };
