@@ -34,7 +34,7 @@ const msp = state => {
 
 export const AuthRoute = withRouter(connect(msp, null)(Auth));
 
-const UnAuth = ({component: Component, path, loggedIn, exact,history}) => {
+const UnAuth = ({component: Component, path, loggedIn, exact, history}) => {
   if (loggedIn) {
     return (
       <Route path={path} exact={exact} render={(props) => (

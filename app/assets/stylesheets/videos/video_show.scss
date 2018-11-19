@@ -47,6 +47,8 @@ video {
 
 .video-show-info-header h2 {
   font-weight: 400;
+  height: 24px;
+  display: block;
   font-size: 18px;
 }
 
@@ -101,4 +103,53 @@ video {
   flex-direction: column;
   list-style: none;
   margin: 0;
+}
+
+.video-show-info-header-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.video-show-info-header-details-btns {
+  list-style: none;
+  display: flex;
+}
+
+.video-show-info-header-details-btns .video-show-likes {
+  display: flex;
+  width: 67px;
+  padding-right: 8px;
+  align-items: center;
+  font-size: 18px;
+
+  height: 40px;
+}
+
+.video-show-likes i {
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+}
+
+.video-show-likes span {
+  font-size: 13px;
+  font-weight: 500;
+  color: gray;
+}
+
+.video-show-likes {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-show-likes-border {
+  width: inherit;
+  position: absolute;
+  bottom: -8px;
+  border-bottom: 2px solid gray;
+}
+
+.video-show-comments {
+  width: 100%;
 }

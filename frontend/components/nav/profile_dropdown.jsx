@@ -26,7 +26,7 @@ class ProfileDropdown extends React.Component {
           </div>
         </li>
         <li onClick={myChannelOnClick.bind(this)}>
-          <i class="fas fa-user-circle"></i>
+          <i className="fas fa-user-circle"></i>
           <span>My Channel</span>
         </li>
         <li onClick={logout}>

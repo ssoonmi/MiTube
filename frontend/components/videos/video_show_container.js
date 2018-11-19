@@ -8,20 +8,25 @@ const msp = (state, ownProps) => {
   const videoId = ownProps.match.params.videoId;
   const video = state.entities.videos[videoId];
   let channel;
+  let like = 0;
   if (video) {
     channel = state.entities.channels[video.channel_id];
+    if (video.userLike) {
+      like = video.userLike;
+    }
   }
   return {
     video,
     channel,
     videoId,
     dropdownShow: state.ui.dropdown,
+    like
   };
 };
 
 const mdp = dispatch => {
   return {
-    fetchVideo: (videoId) => dispatch(fetchVideo(videoId))
+    fetchVideo: (videoId) => dispatch(fetchVideo(videoId)),
   };
 };
 

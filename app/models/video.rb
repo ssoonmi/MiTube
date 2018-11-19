@@ -9,12 +9,15 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  thumbnail_url :string
+#  url           :string
 #
 
 class Video < ApplicationRecord
   validates :title, :description, presence: true
 
   belongs_to :channel
+
+  has_many :likes, as: :likeable
 
   has_one_attached :file
   has_one_attached :thumbnail

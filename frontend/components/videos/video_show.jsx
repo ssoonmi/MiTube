@@ -1,5 +1,8 @@
 import React from 'react';
 import {Player } from 'video-react';
+import VideoShowLikesContainer from './video_show_likes_container';
+import {UnAuthRoute} from '../../util/route_util';
+import VideoShowCommentsContainer from './video_show_comments_container';
 
 class VideoShow extends React.Component {
   constructor(props) {
@@ -46,7 +49,10 @@ class VideoShow extends React.Component {
         <section className="video-show-info-container">
           <div className="video-show-info-header">
             <h2>{title}</h2>
-            <div>1,000,000 views</div>
+            <div className="video-show-info-header-details">
+              <div>1,000,000 views</div>
+              {this.props.video ? <VideoShowLikesContainer video={this.props.video}/> : null}
+            </div>
           </div>
           <div className="video-show-info-details">
             <div className="video-show-info-details-channel">
@@ -69,6 +75,7 @@ class VideoShow extends React.Component {
             </li>
           </ul>
         </section>
+        {this.props.video ? <VideoShowCommentsContainer video={this.props.video}/> : null}
       </article>
     );
   }
