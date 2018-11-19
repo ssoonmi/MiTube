@@ -18,6 +18,7 @@ class Video < ApplicationRecord
   belongs_to :channel
 
   has_many :likes, as: :likeable
+  has_many :comments
 
   has_one_attached :file
   has_one_attached :thumbnail
