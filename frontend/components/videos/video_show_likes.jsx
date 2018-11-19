@@ -14,14 +14,14 @@ class VideoShowLikes extends React.Component {
         const {numLikes, numDislikes} = this.props;
         switch (fieldVal) {
           case 1:
-            if (likeValue == 0) {
+            if (likeValue == 0 || likeValue == null) {
               this.props.createLike(true, this.props.video.id);
             } else {
               this.props.destroyLike(this.props.video.id);
             }
             break;
           case -1:
-            if (likeValue == 0) {
+            if (likeValue == 0 || likeValue == null) {
               this.props.createLike(false, this.props.video.id);
             } else {
               this.props.destroyLike(this.props.video.id);

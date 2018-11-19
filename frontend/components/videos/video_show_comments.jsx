@@ -17,7 +17,11 @@ class VideoShowComments extends React.Component {
       <section className="video-show-comments">
         <h2>803 Comments</h2>
         <form>
-          <textarea className="video-show-comments-input" onChange={this.update("comment")} value={this.state.comment}/>
+          <textarea
+            placeholder="Add a public comment..."
+            className="video-show-comments-input"
+            onChange={this.update("comment")}
+            value={this.state.comment}/>
         </form>
         <ul className="video-show-comments-list">
         </ul>
