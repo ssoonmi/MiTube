@@ -17,8 +17,8 @@ class EditMenu extends React.Component {
       ref={setEditMenuBtn}
       onBlur={hideEditMenu}
       className="comment-details-menu">
-        <li onClick={editComment}>Edit</li>
-        <li onClick={deleteComment}>Delete</li>
+        <div onClick={editComment}><li>Edit</li></div>
+        <div onClick={deleteComment}><li>Delete</li></div>
       </ul>
     );
   }

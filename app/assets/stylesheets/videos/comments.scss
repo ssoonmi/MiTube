@@ -127,6 +127,8 @@
   box-shadow: 1px 1px 1px 1px lightgray;
   top: 24px;
   right: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .comment-details-menu:focus {
@@ -137,7 +139,6 @@
   margin: 0;
   padding: 10px 10px;
   background-color: white;
-  cursor: pointer;
 }
 
 .comment-body {
