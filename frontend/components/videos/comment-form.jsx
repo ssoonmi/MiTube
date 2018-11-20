@@ -31,6 +31,7 @@ class CommentForm extends React.Component {
   }
 
   hideSubmitBtns(e) {
+    this.props.cancelEditComment();
     this.setState({showSubmitBtns: false});
   }
 

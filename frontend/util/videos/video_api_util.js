@@ -1,4 +1,12 @@
-export const fetchVideos = (channelId) => {
+export const fetchVideos = filters => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/videos/`,
+    data: filters
+  });
+}
+
+export const fetchChannelVideos = (channelId) => {
   return $.ajax({
     method: "GET",
     url: `/api/channels/${channelId}/videos`,

@@ -35,8 +35,7 @@ video {
 .video-show-info-container {
   margin-left: 24px;
   margin-right: 24px;
-  min-width: 628px;
-  flex-grow: 2;
+  width: calc(100% - 24px);
 }
 
 .video-show-info-header {

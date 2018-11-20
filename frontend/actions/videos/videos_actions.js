@@ -33,8 +33,15 @@ export const receiveVideoErrors = errors => {
   };
 };
 
-export const fetchVideos = (channelId) => dispatch => {
-  return VideoAPIUtil.fetchVideos(channelId).then((payload)=>
+export const fetchChannelVideos = (channelId) => dispatch => {
+  return VideoAPIUtil.fetchChannelVideos(channelId).then((payload)=>
+    dispatch(receiveVideos(payload)), (response) =>
+    dispatch(receiveVideoErrors(response.responseJSON))
+  );
+};
+
+export const fetchVideos = (filters) => dispatch => {
+  return VideoAPIUtil.fetchVideos(filters).then((payload)=>
     dispatch(receiveVideos(payload)), (response) =>
     dispatch(receiveVideoErrors(response.responseJSON))
   );

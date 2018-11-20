@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import HomePage from './home_page';
 import {fetchChannels} from '../../actions/channels/channels_actions';
-// import {fetchVideos} from '../../actions/videos/videos_actions';
+// import {fetchChannelVideos} from '../../actions/videos/videos_actions';
 
 const msp = (state, ownProps) => {
   return {

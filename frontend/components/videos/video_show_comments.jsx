@@ -22,6 +22,7 @@ class VideoShowComments extends React.Component {
       body: this.state.body,
       video_id: this.props.video.id
     });
+    this.setState({body: "", showSubmitBtns: false});
   }
 
   showSubmitBtns(e) {
@@ -49,27 +50,29 @@ class VideoShowComments extends React.Component {
       <section className="video-show-comments">
         <div className="video-show-comments-header">
           <h2>{commentLis.length} Comments</h2>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <div className="video-show-comments-input-container">
-              <button className="profile-btn">S</button>
-              <textarea
-                onFocus={this.showSubmitBtns}
-                placeholder="Add a public comment..."
-                className="video-show-comments-input"
-                onChange={this.update("body")}
-                value={this.state.body}/>
-            </div>
-            {this.state.showSubmitBtns ?
-              (<div className="comments-submit-btns">
-                <button onClick={this.hideSubmitBtns}>CANCEL</button>
-                <input
-                  type="submit"
-                  disabled={this.state.body.length == 0}
-                  value="COMMENT"/>
-              </div>) : (
-                null
-              )}
-          </form>
+          <div className="video-show-comments-form">
+            <button className="profile-btn">S</button>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <div className="video-show-comments-input-container">
+                <textarea
+                  onFocus={this.showSubmitBtns}
+                  placeholder="Add a public comment..."
+                  className="video-show-comments-input"
+                  onChange={this.update("body")}
+                  value={this.state.body}/>
+              </div>
+              {this.state.showSubmitBtns ?
+                (<div className="comments-submit-btns">
+                  <button onClick={this.hideSubmitBtns}>CANCEL</button>
+                  <input
+                    type="submit"
+                    disabled={this.state.body.length == 0}
+                    value="COMMENT"/>
+                </div>) : (
+                  null
+                )}
+            </form>
+          </div>
         </div>
         <ul className="video-show-comments-list">
           {commentLis}

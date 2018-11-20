@@ -1,6 +1,9 @@
 class Api::VideosController < ApplicationController
 
   def index
+    params.keys.each do |filter|
+
+    end
     @channel = Channel.find(params[:channel_id])
     if @channel
       @videos = @channel.videos.includes(:file, :thumbnail)

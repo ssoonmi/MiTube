@@ -11,7 +11,6 @@ class CommentListItem extends React.Component {
       showEditMenuBtn: false,
       showEditMenu: false,
       editComment: false,
-      body: this.props.comment.body
     };
     this.showEditMenuBtn = this.showEditMenuBtn.bind(this);
     this.hideEditMenuBtn = this.hideEditMenuBtn.bind(this);
@@ -22,6 +21,7 @@ class CommentListItem extends React.Component {
     this.deleteComment = this.deleteComment.bind(this);
     this.updateComment = this.updateComment.bind(this);
     this.setEditMenuBtn = this.setEditMenuBtn.bind(this);
+    this.cancelEditComment = this.cancelEditComment.bind(this);
     this.focus = this.focus.bind(this);
     this.blur = this.blur.bind(this);
   }
@@ -35,6 +35,10 @@ class CommentListItem extends React.Component {
   editComment() {
     this.blur();
     this.setState({editComment: true});
+  }
+
+  cancelEditComment() {
+    this.setState({editComment: false});
   }
 
   updateComment(formData) {
@@ -130,11 +134,12 @@ class CommentListItem extends React.Component {
           {editComment ?
             (
               <CommentForm
-              body={this.state.body}
+              body={this.props.comment.body}
               id={this.props.comment.id}
-              submitCommentForm = {this.updateComment}/>
+              submitCommentForm = {this.updateComment}
+              cancelEditComment = {this.cancelEditComment}/>
             ) : (
-              <div className="comment-body">{comment.body}</div>
+              <pre className="comment-body">{comment.body}</pre>
             )
           }
         </div>

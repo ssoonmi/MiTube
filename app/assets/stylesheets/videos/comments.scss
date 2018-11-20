@@ -19,8 +19,16 @@
   margin-bottom: 24px;
 }
 
+.video-show-comments-form {
+  display: flex;
+}
+
 .video-show-comments-input-container {
   display: flex;
+}
+
+.video-show-comments-form form {
+  width: calc(100% - 56px);
 }
 
 .video-show-comments textarea {
@@ -29,6 +37,7 @@
   padding: 0;
   padding-top: 3px;
   resize: none;
+  overflow-y: scroll;
   border-bottom: 2px solid lightgray;
   margin-bottom: 0px;
 }
@@ -46,7 +55,7 @@
 .comments-submit-btns {
   display: flex;
   justify-content: flex-end;
-  width: inherit;
+  width: 100%;
   margin: 0;
   margin-top: 8px;
 }
@@ -60,22 +69,22 @@
   outline: 0;
 }
 
-.comments-submit-btns input[type=submit] {
-  background-color: #0063d8;
-  color: #eef3fc;
-}
-
-.comments-submit-btns input[type=submit]:disabled {
-  background-color: #d4e9fb;
-}
-
-.comments-submit-btns button {
+.comments-submit-btns button, .comments-submit-btns input[type=submit] {
   background-color: transparent;
   color: #707070;
 }
 
-.comments-submit-btns button:hover {
+.comments-submit-btns button:hover, .comments-submit-btns input[type=submit]:hover {
   color: black;
+}
+
+.video-show-comments-form .comments-submit-btns input[type=submit] {
+  background-color: #0063d8;
+  color: #eef3fc;
+}
+
+.video-show-comments-form .comments-submit-btns input[type=submit]:disabled {
+  background-color: #d4e9fb;
 }
 
 .video-show-comments-list li {
@@ -144,6 +153,11 @@
 .comment-body {
   word-wrap: break-word;
   word-break: break-all;
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;
   // overflow: hidden;
   // text-overflow: ellipsis;
   // -webkit-box-orient: vertical;
