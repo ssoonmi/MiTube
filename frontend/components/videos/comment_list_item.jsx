@@ -3,6 +3,7 @@ import TimeAgo from '../util/time_ago';
 import {Link} from 'react-router-dom';
 import EditMenu from './edit-comment-menu';
 import CommentForm from './comment-form';
+import ProfileButton from '../util/profile_button';
 
 class CommentListItem extends React.Component {
   constructor(props) {
@@ -101,7 +102,7 @@ class CommentListItem extends React.Component {
         onMouseEnter={this.showEditMenuBtn}
         onMouseLeave={this.hideEditMenuBtn}>
         <Link to={user && user.channelIds ? `/channels/${user.channelIds[0]}` : ""}>
-          <button className="profile-btn">S</button>
+          <ProfileButton user={user} size={"40px"} />
         </Link>
         <div className="video-show-comments-list-item-comment">
           <div className="comment-details">

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import VideoShowComments from './video_show_comments';
 import {createComment, updateComment, removeComment, fetchVideoComments} from '../../actions/comments/comments_actions';
+import {withRouter} from 'react-router-dom';
 
 const msp = (state, ownProps) => {
   const video = ownProps.video;
@@ -12,6 +13,9 @@ const msp = (state, ownProps) => {
   return {
     video,
     comments: comments.reverse(),
+    loggedIn: Boolean(state.session.id),
+    history: ownProps.history,
+    user: state.entities.users[state.session.id]
   };
 };
 
@@ -24,4 +28,4 @@ const mdp = (dispatch) => {
   };
 };
 
-export default connect(msp, mdp)(VideoShowComments);
+export default withRouter(connect(msp, mdp)(VideoShowComments));

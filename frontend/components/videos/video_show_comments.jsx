@@ -1,5 +1,7 @@
 import React from 'react';
 import CommentListItemContainer from './comment_list_item_container';
+import ProfileButton from '../util/profile_button';
+import {Link} from 'react-router-dom';
 
 class VideoShowComments extends React.Component {
   constructor(props) {
@@ -26,8 +28,12 @@ class VideoShowComments extends React.Component {
   }
 
   showSubmitBtns(e) {
-    const show = this.state.showSubmitBtns;
-    this.setState({showSubmitBtns: true});
+    if (!this.props.loggedIn) {
+      this.props.history.push("/session/new");
+    } else {
+      const show = this.state.showSubmitBtns;
+      this.setState({showSubmitBtns: true});
+    }
   }
 
   hideSubmitBtns(e) {
@@ -41,6 +47,7 @@ class VideoShowComments extends React.Component {
   }
 
   render() {
+    const {user} = this.props;
     const commentLis = this.props.comments.map((comment) => {
       return (
         <CommentListItemContainer comment={comment} key={comment.id}/>
@@ -51,7 +58,9 @@ class VideoShowComments extends React.Component {
         <div className="video-show-comments-header">
           <h2>{commentLis.length} Comments</h2>
           <div className="video-show-comments-form">
-            <button className="profile-btn">S</button>
+            <Link to={user && user.channelIds ? `/channels/${user.channelIds[0]}` : ""}>
+              <ProfileButton user={user} size={"40px"} />
+            </Link>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="video-show-comments-input-container">
                 <textarea
