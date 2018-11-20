@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // import VideoThumbnail from '../videos/video_thumbnail';
 import TimeAgo from '../util/time_ago';
+import ChannelButton from '../util/channel_button';
 
 class HomePage extends React.Component {
   componentDidMount() {
@@ -14,7 +15,8 @@ class HomePage extends React.Component {
     const channelLis = channels.map((channel, idx) => {
       const iconUrl = channel.icon;
       const content = iconUrl ? undefined : channel.name[0].toUpperCase();
-      const button = <button style={content ? {} : {backgroundImage: `url(${iconUrl})`}} className="profile-btn">{content}</button>;
+      const button = <ChannelButton
+        channel={channel} classNames={"profile-btn"}/>
       const videoIds = channel.videoIds;
       if (videoIds && videoIds.length != 0){
         const videoLis = videoIds.map((videoId, videoIdx) => {

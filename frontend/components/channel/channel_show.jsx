@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink, Route} from 'react-router-dom';
 import ChannelVideosContainer from './channel_videos_container';
+import ChannelButton from '../util/channel_button';
 
 class ChannelShow extends React.Component {
   componentDidMount() {
@@ -18,7 +19,9 @@ class ChannelShow extends React.Component {
           <section className="channel-show-header">
             <div className="channel-show-header-bar">
               <div className="channel-show-header-info">
-                <div className="channel-show-header-icon">{name[0].toUpperCase()}</div>
+                <ChannelButton
+                  channel={this.props.channel}
+                  classNames={"channel-show-header-icon"} />
                 <div className="channel-show-header-details">
                   <h2>{name}</h2>
                   <div>1,000,000 suscribers</div>

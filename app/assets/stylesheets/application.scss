@@ -219,6 +219,9 @@ main {
   font-weight: lighter;
   box-shadow: none;
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-auth-section > .profile-btn {

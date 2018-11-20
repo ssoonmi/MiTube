@@ -1,8 +1,10 @@
 import React from 'react';
-import {Player } from 'video-react';
+// import {Player } from 'video-react';
 import VideoShowLikesContainer from './video_show_likes_container';
 import {UnAuthRoute} from '../../util/route_util';
 import VideoShowCommentsContainer from './video_show_comments_container';
+import {Link} from 'react-router-dom';
+import ChannelButton from '../util/channel_button';
 
 class VideoShow extends React.Component {
   constructor(props) {
@@ -56,9 +58,15 @@ class VideoShow extends React.Component {
           </div>
           <div className="video-show-info-details">
             <div className="video-show-info-details-channel">
-              <div className="video-show-info-details-channel-icon">{channelName ? channelName[0].toUpperCase() : ""}</div>
+              <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
+                <ChannelButton
+                classNames={"video-show-info-details-channel-icon"}
+                channel={this.props.channel}/>
+              </Link>
               <div className="video-show-info-details-channel-name">
-                <h3>{channelName}</h3>
+                <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
+                  <h3>{channelName}</h3>
+                </Link>
                 <div>Published on {publishedOn}</div>
               </div>
             </div>
