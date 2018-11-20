@@ -1,0 +1,151 @@
+.video-show-comments {
+  margin-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.video-show-comments .profile-btn {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.video-show-comments-header {
+  margin: 24px 0px 32px 0px;
+}
+
+.video-show-comments-header h2 {
+  margin-bottom: 24px;
+}
+
+.video-show-comments-input-container {
+  display: flex;
+}
+
+.video-show-comments textarea {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  padding-top: 3px;
+  resize: none;
+  border-bottom: 2px solid lightgray;
+  margin-bottom: 0px;
+}
+
+.video-show-comments textarea:focus {
+  border-color: black;
+  outline: none;
+}
+
+.video-show-comments-list {
+  list-style: none;
+  width: 100%;
+}
+
+.comments-submit-btns {
+  display: flex;
+  justify-content: flex-end;
+  width: inherit;
+  margin: 0;
+  margin-top: 8px;
+}
+
+.comments-submit-btns input[type=submit], .comments-submit-btns button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px;
+  border: 0;
+  outline: 0;
+}
+
+.comments-submit-btns input[type=submit] {
+  background-color: #0063d8;
+  color: #eef3fc;
+}
+
+.comments-submit-btns input[type=submit]:disabled {
+  background-color: #d4e9fb;
+}
+
+.comments-submit-btns button {
+  background-color: transparent;
+  color: #707070;
+}
+
+.comments-submit-btns button:hover {
+  color: black;
+}
+
+.video-show-comments-list li {
+  display: flex;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.video-show-comments-list li h5 {
+  display: inline-block;
+  margin-right: 5px;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.video-show-comments-list li span {
+  color: gray;
+  font-size: 13px;
+}
+
+.video-show-comments-list-item-comment {
+  width: 100%;
+}
+
+.comment-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+
+.comment-details-menu-btn {
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  padding: 3px 7.5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.comment-details-menu-btn:active {
+  background-color: lightgray;
+}
+
+.comment-details-menu {
+  position: absolute;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  top: 24px;
+  right: 0;
+}
+
+.comment-details-menu:focus {
+  outline: 0;
+}
+
+.comment-details-menu li {
+  margin: 0;
+  padding: 10px 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.comment-body {
+  word-wrap: break-word;
+  word-break: break-all;
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  // -webkit-box-orient: vertical;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 2;
+}

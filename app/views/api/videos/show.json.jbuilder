@@ -16,11 +16,19 @@ json.videos do
     json.numLikes numLikes
     json.numDislikes numDislikes
     json.userLike user_like
+    json.commentIds @comments.ids unless @comments.empty?
+    json.commentIds [] if @comments.empty?
   end
 end
 
 json.channels do
   json.set! @channel.id do
     json.extract! @channel, :id, :name, :description, :user_id
+  end
+end
+
+json.comments do
+  @comments.each do |comment|
+    json.partial! '/api/comments/comment', comment: comment
   end
 end

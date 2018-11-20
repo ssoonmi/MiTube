@@ -2,14 +2,23 @@ class Api::VideosController < ApplicationController
 
   def index
     @channel = Channel.find(params[:channel_id])
-    @videos = @channel.videos.includes(:file, :thumbnail)
-    render :index
+    if @channel
+      @videos = @channel.videos.includes(:file, :thumbnail)
+      render :index
+    else
+      render json: ["Channel not found"], status: 422
+    end
   end
 
   def show
-    @video = Video.includes(:channel).find(params[:id])
-    @channel = @video.channel;
-    render :show
+    @video = Video.includes(:channel, :comments).find(params[:id])
+    if @video
+      @comments = @video.comments
+      @channel = @video.channel;
+      render :show
+    else
+      render json: ["Video not found"], status: 422
+    end
   end
 
   def create

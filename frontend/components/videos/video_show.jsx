@@ -43,10 +43,10 @@ class VideoShow extends React.Component {
     return (
       <article className="video-show-page">
         {this.props.dropdownShow}
-        <div className="video-show-page-video-container">
+        <div className="video-show-video video-show-page-video-container">
           {renderVideo}
         </div>
-        <section className="video-show-info-container">
+        <section className="video-show-info video-show-info-container">
           <div className="video-show-info-header">
             <h2>{title}</h2>
             <div className="video-show-info-header-details">
@@ -65,7 +65,8 @@ class VideoShow extends React.Component {
             <div className="video-show-info-details-description">{description}</div>
           </div>
         </section>
-        <section className="video-show-video-list-container">
+        <section className="video-show-other-videos video-show-video-list-container">
+          <h3>Up Next</h3>
           <ul className="video-show-video-list">
             <li>
               <img className="video-show-video-list-video-thumbnail" />

@@ -1,6 +1,7 @@
 import {RECEIVE_USER, REMOVE_USER, RECEIVE_USERS} from '../../actions/users/users_actions';
 import {RECEIVE_CHANNEL, RECEIVE_CHANNELS, REMOVE_CHANNEL} from '../../actions/channels/channels_actions';
 import {LOG_IN_USER, LOG_OUT_USER} from '../../actions/session/session_actions';
+import {RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT} from '../../actions/comments/comments_actions';
 import {merge} from 'lodash';
 
 const UsersReducer = (state={}, action) => {
@@ -8,6 +9,8 @@ const UsersReducer = (state={}, action) => {
   let newState;
   let userId;
   let channelIds;
+  let commentsUserIds;
+  let commentIds;
   switch (action.type) {
     case RECEIVE_USERS:
       return action.payload.users;
@@ -40,6 +43,42 @@ const UsersReducer = (state={}, action) => {
       newState = merge({}, state);
       delete newState[action.id].email;
       return newState;
+    case RECEIVE_COMMENTS:
+      newState = merge({}, state);
+      commentIds = action.payload.commentIds;
+      Object.keys(action.payload.userIds).forEach((userId) => {
+        if (!newState[userId]) {
+          newState[userId] = action.payload.users[userId];
+        } else {
+          if (newState[userId].commentIds) {
+            commentIds.forEach((id) => {
+              if (!newState[userId].commentIds.includes(id)) {
+                newState[userId].commentIds.push(id);
+              }
+            });
+          } else {
+            newState[userId].commentIds = commentIds;
+          }
+        }
+      });
+      return newState;
+    case RECEIVE_COMMENT:
+      newState = merge({}, state);
+      if (newState[action.payload.userId]){
+        if (newState[action.payload.userId].commentIds) {
+          newState[action.payload.userId].commentIds.push(action.payload.id);
+        } else {
+          newState[action.payload.userId].commentIds = [action.payload.id];
+        }
+      } else {
+        newState[action.payload.userId] = action.payload.users[action.payload.userId];
+      }
+      return newState;
+    case REMOVE_COMMENT:
+      newState = merge({}, state);
+      commentIds = newState[action.payload.userId].commentIds;
+      newState[action.payload.userId].commentIds = commentIds.filter(id => id != action.payload.id);
+      return state;
     default:
       return state;
   }

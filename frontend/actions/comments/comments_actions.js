@@ -18,6 +18,8 @@ export const createComment = comment => dispatch => {
     dispatch({
       type: RECEIVE_COMMENT,
       payload
+    }, (response) => {
+      console.log(response);
     });
   });
 }
