@@ -3,15 +3,42 @@
   color: #707070;
   // for title and headers
   color: #111111;
+  position: relative;
+  width: 100%;
 }
 
 .channel-show-header {
   background-color: #fafafa;
+  width: 100%;
+}
+
+.channel-splash-header-container {
+  height: calc(100vw / 6.2 - 1px);
+  width: 100%;
+  z-index: -2;
+  position: relative;
+}
+
+.channel-splash-header-fix {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.channel-splash-header {
+  height: calc(100vw / 6.2 - 1px);
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  position: fixed;
+  z-index: -2;
 }
 
 .channel-show-header-bar {
   margin: 0 auto;
-  width: 856px;
+  max-width: 856px;
   padding-top: 16px;
 }
 

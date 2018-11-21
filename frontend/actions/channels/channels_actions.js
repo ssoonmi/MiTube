@@ -48,6 +48,16 @@ export const createChannel = (channel, history) => dispatch => {
   });
 };
 
+export const updateChannel = (channel, channelId, history) => dispatch => {
+  return ChannelsAPIUtil.updateChannel(channel, channelId).then((payload)=>{
+    dispatch({
+      type: RECEIVE_CHANNEL,
+      payload
+    });
+    history.push(`/channels/${channelId}`);
+  });
+};
+
 export const removeChannel = (channelId) => dispatch => {
   return ChannelsAPIUtil.removeChannel(channelId).then((payload)=>{
     dispatch({

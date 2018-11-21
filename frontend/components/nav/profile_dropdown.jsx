@@ -16,9 +16,14 @@ class ProfileDropdown extends React.Component {
       this.props.toggleProfileDropdown();
       this.props.history.push(myChannelLink);
     };
+
+    const profileNameOnClick = () => {
+      this.props.toggleProfileDropdown();
+      this.props.history.push("/user/edit");
+    };
     return (
       <ul tabIndex="0" onBlur={toggleProfileDropdown} ref={wrapperRef} className="profile-dropdown">
-        <li className="profile-name">
+        <li onClick={profileNameOnClick} className="profile-name">
           {button}
           <div>
             <span>{username}</span>

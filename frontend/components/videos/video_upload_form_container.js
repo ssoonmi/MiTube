@@ -12,16 +12,18 @@ const msp = (state, ownProps) => {
     file: '',
     thumbnail: '',
   };
+  const errors = state.errors.videos
   return {
     video,
-    channelId
+    channelId,
+    errors,
   };
 };
 
 const mdp = (dispatch, ownProps) => {
   const history = ownProps.history;
   return {
-    submitForm: (video, channelId) => dispatch(createVideo(video, channelId, history)),
+    submitForm: (video, channelId, enableSubmit) => dispatch(createVideo(video, channelId, history, enableSubmit)),
     history
   }
 };

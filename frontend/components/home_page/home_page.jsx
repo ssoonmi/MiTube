@@ -13,8 +13,6 @@ class HomePage extends React.Component {
     const {channels, videos} = this.props;
     let timeNow = new Date();
     const channelLis = channels.map((channel, idx) => {
-      const iconUrl = channel.icon;
-      const content = iconUrl ? undefined : channel.name[0].toUpperCase();
       const button = <ChannelButton
         channel={channel} classNames={"profile-btn"}/>
       const videoIds = channel.videoIds;
@@ -39,10 +37,14 @@ class HomePage extends React.Component {
         // <VideoThumbnail video={this.props.videos[videoId]}/>
         return (
           <li key={channel.id} className="channels-list-item">
-            <Link to={`/channels/${channel.id}`}className="channels-list-item-details">
-              {button}
-              <h3>{channel.name}</h3>
-            </Link>
+            <div className="channels-list-item-details">
+              <Link to={`/channels/${channel.id}`}>
+                {button}
+              </Link>
+              <Link to={`/channels/${channel.id}`}>
+                <h3>{channel.name}</h3>
+              </Link>
+            </div>
             <ul className="video-list">
               {videoLis}
             </ul>

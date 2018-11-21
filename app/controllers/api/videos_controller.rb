@@ -27,16 +27,31 @@ class Api::VideosController < ApplicationController
   def create
     @channel = Channel.find(params[:channel_id])
     if @channel && current_user.id == @channel.user_id
-      @video = @channel.videos.new(video_params)
-      if @video.save
-        render :show
+      if (params[:video][:thumbnail] && params[:video][:file]) &&
+        (params[:video][:thumbnail] != "" && params[:video][:file] != "")
+        @video = @channel.videos.new(video_params)
+        if @video.save
+          render :show
+        else
+          render json: @video.errors.full_messages, status: 400
+        end
       else
-        render json: @video.errors.full_messages, status: 400
+        render json: ["Need thumbnail and video file"], status: 422
       end
     elsif @channel
       render json: ["Can't upload to someone else's channel"], status: 422
     else
       render json: ["Can't find channel"], status: 422
+    end
+  end
+
+  def destroy
+    @video = Video.includes(:channel).find(params[:id])
+    if @video && current_user.id == @video.channel.user_id
+      @video.destroy
+      render json: {id: @video.id}
+    else
+      render json: ["Can't find video"], status: 422
     end
   end
 

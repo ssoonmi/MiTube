@@ -16,8 +16,8 @@ json.videos do
     json.numLikes numLikes
     json.numDislikes numDislikes
     json.userLike user_like
-    json.commentIds @comments.ids unless @comments.empty?
-    json.commentIds [] if @comments.empty?
+    json.commentIds @comments.ids unless !@comments || @comments.empty?
+    json.commentIds [] if !@comments || @comments.empty?
   end
 end
 
@@ -27,8 +27,10 @@ json.channels do
   end
 end
 
-json.comments do
-  @comments.each do |comment|
-    json.partial! '/api/comments/comment', comment: comment
+if @comments
+  json.comments do
+    @comments.each do |comment|
+      json.partial! '/api/comments/comment', comment: comment
+    end
   end
 end

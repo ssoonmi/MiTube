@@ -4,6 +4,9 @@ const ChannelButton = ({channel, size, classNames}) => {
   if (channel) {
     const {name, iconUrl} = channel;
     const content = iconUrl ? undefined : name[0].toUpperCase();
+    if (!classNames) {
+      classNames = "";
+    }
     const style = {
       backgroundImage: content ? "" : `url(${iconUrl})`,
       width: size,
@@ -12,7 +15,7 @@ const ChannelButton = ({channel, size, classNames}) => {
     return (
       <div
       style={style}
-      className={classNames}>
+      className={classNames + " channel-button"}>
       {content}
       </div>
     )

@@ -7,14 +7,17 @@ const msp = (state, ownProps) => {
   // const username = ownProps.match.params.username;
   const channelId = ownProps.match.params.channelId;
   const channel = state.entities.channels[channelId];
+  let owner;
   let user;
   if (channel) {
     user = state.entities.users[channel.user_id];
+    owner = state.session.id == channel.user_id;
   }
   return {
     channelId,
     channel: state.entities.channels[channelId],
     user,
+    owner,
   };
 };
 

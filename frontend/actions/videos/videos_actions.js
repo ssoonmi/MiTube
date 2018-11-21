@@ -54,12 +54,14 @@ export const fetchVideo = (videoId) => dispatch => {
   );
 };
 
-export const createVideo = (video, channelId, history) => dispatch => {
+export const createVideo = (video, channelId, history, enableSubmit) => dispatch => {
   return VideoAPIUtil.createVideo(video, channelId).then((payload)=> {
     const videoId = Object.keys(payload.videos)[0];
     history.push(`/videos/${videoId}`);
-  }, (response) =>
+  }, (response) => {
+    enableSubmit();
     dispatch(receiveVideoErrors(response.responseJSON))
+  }
   );
 };
 

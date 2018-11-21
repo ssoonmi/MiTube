@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :ensure_logged_in, only: [:destroy]
+  before_action :ensure_logged_in, only: [:destroy, :update]
 
   def create
     @user = User.new(user_params)
@@ -22,6 +22,19 @@ class Api::UsersController < ApplicationController
   def index
     @users = User.all?
     render :index
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user && (@user.id == current_user.id)
+      if @user.update(user_params)
+        render :show
+      else
+        render json: @user.errors.full_messages, status: 400
+      end
+    else
+      render json: ["User not found"], status: 422
+    end
   end
 
   def destroy

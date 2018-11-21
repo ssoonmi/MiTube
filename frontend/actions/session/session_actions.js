@@ -1,6 +1,6 @@
 import * as SessionAPIUtil from '../../util/session/session_api_util';
 
-export const LOG_IN_USER = "RECEIVE_USER";
+export const LOG_IN_USER = "LOG_IN_USER";
 export const LOG_OUT_USER = "LOG_OUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 

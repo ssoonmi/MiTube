@@ -39,7 +39,7 @@ export const createChannel = (channel) => {
 
 export const updateChannel = (channel, channelId) => {
   return $.ajax({
-    type: "POST",
+    type: "PATCH",
     url: `api/channels/${channelId}`,
     data: channel,
     contentType: false,

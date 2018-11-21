@@ -10,6 +10,8 @@ class VideoForm extends React.Component {
     this.state.videoDrag = false;
     this.state.thumbnailDrag = false;
     this.state.disabled = false;
+
+    this.enableSubmit = this.enableSubmit.bind(this);
   }
 
   handleSubmit(e) {
@@ -25,7 +27,11 @@ class VideoForm extends React.Component {
     formData.append('video[file]', this.state.file);
     formData.append('video[thumbnail]', this.state.thumbnail);
     this.setState({disabled: true});
-    this.props.submitForm(formData, this.props.channelId);
+    this.props.submitForm(formData, this.props.channelId, this.enableSubmit);
+  }
+
+  enableSubmit() {
+    this.setState({disabled: false});
   }
 
   update(field) {
@@ -99,11 +105,25 @@ class VideoForm extends React.Component {
   }
 
   render() {
+    const {errors} = this.props;
+    let errorsLis;
+    if (errors.length != 0) {
+      errorsLis = (
+        <ul className="video-form-errors">
+          {errors.map((error, idx) => {
+            return (
+              <li key={idx}>{error}</li>
+            )
+          })}
+        </ul>
+      );
+    }
     return (
       <div className="video-form-background">
         <div className="video-form-container">
           <form onSubmit={this.handleSubmit.bind(this)} className="video-form">
             <h2>Upload a New Video</h2>
+            {errorsLis}
             <div className="submit-file-container">
               <label
                 onDragEnter={this.dragEnterFile("videoDrag")}
@@ -125,7 +145,7 @@ class VideoForm extends React.Component {
                     </>
                   )
                 }
-                <input onChange={this.handleFile("file")} type="file" className="video-upload-field" accept="video/*"/>
+                <input disabled={this.state.disabled} onChange={this.handleFile("file")} type="file" className="video-upload-field" accept="video/*"/>
               </label>
             </div>
             <div className="submit-file-container">
@@ -149,7 +169,7 @@ class VideoForm extends React.Component {
                     </>
                   )
                 }
-                <input onChange={this.handleFile("thumbnail")} type="file" className="thumbnail-upload-field" accept="image/*"/>
+                <input disabled={this.state.disabled} onChange={this.handleFile("thumbnail")} type="file" className="thumbnail-upload-field" accept="image/*"/>
               </label>
             </div>
             <input placeholder="Title" type="text" onChange={this.update("title")} value={this.state.title}/>
