@@ -19,6 +19,7 @@ class Video < ApplicationRecord
 
   has_many :likes, as: :likeable
   has_many :comments
+  has_many :views
 
   has_one_attached :file
   has_one_attached :thumbnail

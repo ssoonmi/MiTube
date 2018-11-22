@@ -1,13 +1,22 @@
 import * as VideoAPIUtil from '../../util/videos/video_api_util';
+import {createView} from '../views/views_actions';
 
 export const RECEIVE_VIDEOS = "RECEIVE_VIDEOS";
 export const RECEIVE_VIDEO = "RECEIVE_VIDEO";
+export const RECEIVE_SEARCH_VIDEOS = "RECEIVE_SEARCH_VIDEOS";
 export const RECEIVE_VIDEO_ERRORS = "RECEIVE_VIDEO_ERRORS";
 export const REMOVE_VIDEO = "REMOVE_VIDEO";
 
 export const receiveVideos = payload => {
   return {
     type: RECEIVE_VIDEOS,
+    payload
+  };
+};
+
+export const receiveSearchVideos = payload => {
+  return {
+    type: RECEIVE_SEARCH_VIDEOS,
     payload
   };
 };
@@ -42,7 +51,7 @@ export const fetchChannelVideos = (channelId) => dispatch => {
 
 export const fetchVideos = (filters) => dispatch => {
   return VideoAPIUtil.fetchVideos(filters).then((payload)=>
-    dispatch(receiveVideos(payload)), (response) =>
+    dispatch(receiveSearchVideos(payload)), (response) =>
     dispatch(receiveVideoErrors(response.responseJSON))
   );
 };
@@ -51,7 +60,7 @@ export const fetchVideo = (videoId) => dispatch => {
   return VideoAPIUtil.fetchVideo(videoId).then((payload)=>
     dispatch(receiveVideo(payload)), (response) =>
     dispatch(receiveVideoErrors(response.responseJSON))
-  );
+  ).then(() => dispatch(createView(videoId)));
 };
 
 export const createVideo = (video, channelId, history, enableSubmit) => dispatch => {

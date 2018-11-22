@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthSection from './auth_section';
+import NavSearchContainer from './nav_search_container';
 
 const Nav = (props) => {
   return (
@@ -9,7 +10,7 @@ const Nav = (props) => {
         <i className="fab fa-youtube"></i>
         <a href='#/'><img src={window.logo}/></a>
       </div>
-      <div className="nav-search"></div>
+      <NavSearchContainer />
       <AuthSection {...props}/>
     </nav>
   );

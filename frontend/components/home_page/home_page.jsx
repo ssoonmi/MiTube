@@ -27,7 +27,7 @@ class HomePage extends React.Component {
                 <h4>{video.title}</h4>
                 <div className="video-list-item-details">
                   <div><Link to={`/channels/${channel.id}`}>{channel.name}</Link></div>
-                  <span>8.2M views • </span>
+                  <span>{video.numViews} views • </span>
                   <span>{<TimeAgo time={video.created_at}/>}</span>
                 </div>
               </div>
@@ -55,9 +55,11 @@ class HomePage extends React.Component {
       }
     });
     return (
-      <ul className="channels-list">
-        {channelLis}
-      </ul>
+      <div className="gray-background">
+        <ul className="channels-list">
+          {channelLis}
+        </ul>
+      </div>
     )
   }
 }

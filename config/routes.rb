@@ -7,12 +7,13 @@ Rails.application.routes.draw do
     get "/users/:username/channels", to: "channels#show_by_username", as: :channels_username
     resource :session, only: [:create, :destroy]
     resources :channels, only: [:create, :update, :destroy, :index, :show] do
-      resources :videos, only: [:index, :create]
+      resources :videos, only: [:create]
     end
     resources :videos, only: [:update, :destroy, :show, :index] do
       post '/likes', to: 'likes#create'
       delete '/likes', to: 'likes#destroy'
       resources :comments, only: [:create, :index]
+      resources :views, only: [:create]
     end
 
     resources :comments, only: [:destroy, :update]

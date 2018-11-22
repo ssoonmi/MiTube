@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {fetchVideo} from '../../actions/videos/videos_actions';
+import {createView} from '../../actions/views/views_actions';
 import VideoShow from './video_show';
 
 const msp = (state, ownProps) => {
@@ -27,6 +28,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     fetchVideo: (videoId) => dispatch(fetchVideo(videoId)),
+    createView: (videoId) => dispatch(createView(videoId))
   };
 };
 

@@ -6,6 +6,7 @@ import * as sessionActions from './actions/session/session_actions';
 import * as channelsActions from './actions/channels/channels_actions';
 import * as videosActions from './actions/videos/videos_actions';
 import * as commentsActions from './actions/comments/comments_actions';
+import * as viewsActions from './actions/views/views_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState={};
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.channelsActions = channelsActions;
   window.videosActions = videosActions;
   window.commentsActions = commentsActions;
+  window.viewsActions = viewsActions;
 });
 
 // git push -u origin auth

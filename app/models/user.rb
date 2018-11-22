@@ -21,7 +21,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :channels
-
+  has_many :views
   has_many :videos, through: :channels
 
   has_one_attached :icon

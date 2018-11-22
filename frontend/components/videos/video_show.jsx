@@ -25,12 +25,14 @@ class VideoShow extends React.Component {
     let channelIcon;
     let publishedOn;
     let thumbnail;
+    let numViews;
     if (this.props.video) {
       title = this.props.video.title;
       description = this.props.video.description;
       channelName = this.props.channel.name;
       channelIcon = this.props.channel.icon;
       thumbnail = this.props.video.thumbnail;
+      numViews = this.props.video.numViews;
       const time = new Date(this.props.video.created_at);
       publishedOn = `${this.monthNames[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}`;
       renderVideo = (
@@ -52,7 +54,7 @@ class VideoShow extends React.Component {
           <div className="video-show-info-header">
             <h2>{title}</h2>
             <div className="video-show-info-header-details">
-              <div>1,000,000 views</div>
+              <div>{numViews} views</div>
               {this.props.video ? <VideoShowLikesContainer video={this.props.video}/> : null}
             </div>
           </div>

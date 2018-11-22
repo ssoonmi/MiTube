@@ -1,7 +1,8 @@
-import {RECEIVE_VIDEOS, RECEIVE_VIDEO, REMOVE_VIDEO} from '../../actions/videos/videos_actions';
+import {RECEIVE_VIDEOS, RECEIVE_SEARCH_VIDEOS, RECEIVE_VIDEO, REMOVE_VIDEO} from '../../actions/videos/videos_actions';
 import {RECEIVE_CHANNELS, RECEIVE_CHANNEL} from '../../actions/channels/channels_actions';
 import {CREATE_VIDEO_LIKE, DESTROY_VIDEO_LIKE} from '../../actions/likes/likes_actions';
 import {RECEIVE_COMMENT, RECEIVE_COMMENTS, REMOVE_COMMENT} from '../../actions/comments/comments_actions';
+import {RECEIVE_VIEW} from '../../actions/views/views_actions';
 import {merge} from 'lodash';
 
 const videosReducer = (state={}, action) => {
@@ -13,6 +14,7 @@ const videosReducer = (state={}, action) => {
     case RECEIVE_CHANNEL:
     case RECEIVE_CHANNELS:
     case RECEIVE_VIDEO:
+    case RECEIVE_SEARCH_VIDEOS:
     case RECEIVE_VIDEOS:
       return merge({}, state, action.payload.videos);
     case REMOVE_VIDEO:
@@ -50,6 +52,11 @@ const videosReducer = (state={}, action) => {
       videoId = action.payload.videoId;
       commentIds = newState[videoId].commentIds;
       newState[videoId].commentIds = commentIds.filter(id => id != action.payload.id);
+      return newState;
+    case RECEIVE_VIEW:
+      newState = merge({}, state);
+      videoId = action.payload.video_id;
+      newState[videoId].numViews++;
       return newState;
     default:
       return state;

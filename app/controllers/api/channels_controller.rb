@@ -2,20 +2,20 @@ class Api::ChannelsController < ApplicationController
 
   def index
     if params[:tags]
-      @channels = Channel.includes(:user, :videos).all
+      @channels = Channel.includes(:user, videos: [:views]).all
     else
-      @channels = Channel.includes(:user, :videos).all
+      @channels = Channel.includes(:user, videos: [:views]).all
     end
     render :index
   end
 
   def show
-    @channel = Channel.includes(:user, :videos).find(params[:id])
+    @channel = Channel.includes(:user, videos: [:views]).find(params[:id])
     render :show
   end
 
   def show_by_username
-    @user = User.includes(:channels, :videos).find_by(username: params[:username])
+    @user = User.includes(:channels, videos: [:views]).find_by(username: params[:username])
     @channels = @user.channels
     render :index
   end

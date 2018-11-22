@@ -22,7 +22,7 @@ class ChannelVideos extends React.Component {
             <div className="video-list-item-info">
               <h4>{video.title}</h4>
               <div className="video-list-item-details">
-                <span>8.2M views • </span>
+                <span>{video.numViews} views • </span>
                 <span><TimeAgo time={video.created_at}/></span>
               </div>
             </div>

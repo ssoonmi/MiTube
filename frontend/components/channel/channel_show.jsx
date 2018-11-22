@@ -32,7 +32,7 @@ class ChannelShow extends React.Component {
                   classNames={"channel-show-header-icon"} />
                 <div className="channel-show-header-details">
                   <h2>{name}</h2>
-                  <div>1,000,000 suscribers</div>
+                  <div></div>
                 </div>
                 {owner ?
                 (<Link to={`/channels/${channelId}/edit`}

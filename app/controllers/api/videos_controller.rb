@@ -1,20 +1,41 @@
 class Api::VideosController < ApplicationController
 
   def index
-    params.keys.each do |filter|
-
+    if params[:search].length > 4
+      @channel = Channel.includes(:videos).limit(1).where('lower(name) = ?', "#{params[:search].downcase}")
     end
-    @channel = Channel.find(params[:channel_id])
-    if @channel
-      @videos = @channel.videos.includes(:file, :thumbnail)
-      render :index
-    else
-      render json: ["Channel not found"], status: 422
+    @channel = nil unless @channel && !@channel.empty?
+    offset = 0
+    offset = Integer(params[:offset]) if params[:offset]
+    limit = 100
+    limit = Integer(params[:limit]) if params[:limit]
+    @videos = Video
+      .includes(:channel, :views)
+      .limit(Integer(limit))
+      .offset(offset)
+      .where('lower(title) LIKE ?', "%#{params[:search].downcase.split(" ").join('%')}%")
+      # .order("CASE WHEN TITLE LIKE '%food%' THEN 1 WHEN NAME LIKE '%product%' THEN 2 ELSE 100 END")
+    if @videos.length < limit
+      @videos.or(Video
+        .includes(:channel, :views)
+        .limit(Integer(limit))
+        .offset(offset)
+        .where('lower(description) LIKE ?', "%#{params[:search].downcase.split(" ").join('%')}%")
+        # .order("CASE WHEN NAME LIKE '%food%' THEN 1 WHEN NAME LIKE '%product%' THEN 2 ELSE 100 END")
+      )
     end
+    render :index
+    # @channel = Channel.find(params[:channel_id])
+    # if @channel
+    #   @videos = @channel.videos.includes(:file, :thumbnail)
+    #   render :index
+    # else
+    #   render json: ["Channel not found"], status: 422
+    # end
   end
 
   def show
-    @video = Video.includes(:channel, :comments).find(params[:id])
+    @video = Video.includes(:channel, :comments, :views).find(params[:id])
     if @video
       @comments = @video.comments
       @channel = @video.channel;
@@ -46,7 +67,7 @@ class Api::VideosController < ApplicationController
   end
 
   def destroy
-    @video = Video.includes(:channel).find(params[:id])
+    @video = Video.includes(:channel, :views).find(params[:id])
     if @video && current_user.id == @video.channel.user_id
       @video.destroy
       render json: {id: @video.id}
