@@ -6,7 +6,9 @@
 
 .channels-list {
   list-style: none;
-  width: fit-content;
+  width: 100%;
+  max-width: 1075px;
+  padding: 0 16px;
   margin: 0 auto;
 }
 
@@ -16,7 +18,8 @@
 
 .channels-list-item {
   border-bottom: 1px solid lightgray;
-  width: 1075px;
+  width: 100%;
+  max-width: 1075px;
 }
 
 .channels-list-item .video-list {
