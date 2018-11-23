@@ -10,7 +10,7 @@ class HomePage extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.props.resetSearch();
+    this.props.resetSearch();
   }
 
   render() {

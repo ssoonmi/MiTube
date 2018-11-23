@@ -4,14 +4,26 @@ channelIds = []
 
 @channels.each do |channel|
   channelIds.push(channel.id)
-  json.channels do
-    json.partial! 'api/channels/channel', channel: channel, videos: channel.videos
-  end
+  videoIds = []
   channel.videos.limit(6).each do |video|
     json.videos do
       json.partial! 'api/videos/video', video: video
     end
+    videoIds.push(video.id)
   end
+  json.channels do
+    json.set! channel.id do
+      json.extract! channel, :id, :name, :description, :user_id
+      json.videoIds videoIds
+      if channel.icon.attached?
+        json.iconUrl url_for(channel.icon)
+      end
+      if channel.splash.attached?
+        json.splashUrl url_for(channel.splash)
+      end
+    end
+  end
+
   users_channel_ids[channel.user_id].push(channel.id)
 end
 
