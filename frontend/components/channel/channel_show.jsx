@@ -14,7 +14,7 @@ class ChannelShow extends React.Component {
   }
 
   render() {
-    if (this.props.channel) {
+    if (this.props.channel && this.props.user) {
       let {channelId, owner} = this.props;
       let {name, description, splashUrl} = this.props.channel;
       let {username} = this.props.user;
