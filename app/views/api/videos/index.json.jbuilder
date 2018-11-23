@@ -1,4 +1,6 @@
-@videos.each do |video|
+videoIds = []
+
+@videos.uniq.each do |video|
   json.videos do
     json.partial! 'api/videos/video.json.jbuilder', video: video, thumbnail: video.thumbnail, file: video.file
   end
@@ -8,7 +10,10 @@
       json.extract! channel, :id, :name, :user_id
     end
   end
+  videoIds.push(video.id)
 end
+
+json.videoIds videoIds
 
 if @channel
   channel = @channel[0]

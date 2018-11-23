@@ -19,7 +19,7 @@ const videosReducer = (state={}, action) => {
       return merge({}, state, action.payload.videos);
     case REMOVE_VIDEO:
       newState = merge({}, state);
-      delete newState[action.payload.id];
+      delete newState[action.id];
       return newState;
     case DESTROY_VIDEO_LIKE:
     case CREATE_VIDEO_LIKE:

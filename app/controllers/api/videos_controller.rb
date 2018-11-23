@@ -1,9 +1,38 @@
 class Api::VideosController < ApplicationController
 
   def index
-    if params[:search].length > 4
-      @channel = Channel.includes(:videos).limit(1).where('lower(name) = ?', "#{params[:search].downcase}")
+    search = params[:search].downcase
+    search_words = search.split(" ")
+    numWords = search_words.length
+    where_clause = ['lower(username) LIKE ?']
+    search_words.length.times do
+      where_clause.push('lower(username) LIKE ? ')
     end
+    where_clause_joined = where_clause.join(' OR ')
+    search_words_split = []
+    orig_search_words_split = []
+    search_vars = []
+    order_whens = []
+    order_clause = ""
+    search_words_split = search_words.each do |word|
+      search_words_split.push("%#{word}%")
+      orig_search_words_split.push("%#{word}%")
+      order_whens.push("lower(title) LIKE ?")
+    end
+    where_and_str = order_whens.join(" AND ")
+    where_or_str = order_whens.join(" OR ")
+    search_words_split = search_words_split.concat(search_words_split)
+    # numWords.times do |idx|
+    #   search_vars.push("%#{search_words_split.join('%')}")
+    #   order_clause += "WHEN lower(title) LIKE '?' THEN #{idx + 1} "
+    #   search_words_split.pop
+    # end
+
+    order_str = "CASE #{order_clause} ELSE 100 END"
+    @channel = Channel
+      .includes(:videos)
+      .limit(1)
+      .where("lower(name) = ?", search)
     @channel = nil unless @channel && !@channel.empty?
     offset = 0
     offset = Integer(params[:offset]) if params[:offset]
@@ -13,17 +42,16 @@ class Api::VideosController < ApplicationController
       .includes(:channel, :views)
       .limit(Integer(limit))
       .offset(offset)
-      .where('lower(title) LIKE ?', "%#{params[:search].downcase.split(" ").join('%')}%")
+      .where(where_and_str, *orig_search_words_split)
       # .order("CASE WHEN TITLE LIKE '%food%' THEN 1 WHEN NAME LIKE '%product%' THEN 2 ELSE 100 END")
     if @videos.length < limit
-      @videos.or(Video
+      @or_videos = Video
         .includes(:channel, :views)
         .limit(Integer(limit))
         .offset(offset)
-        .where('lower(description) LIKE ?', "%#{params[:search].downcase.split(" ").join('%')}%")
-        # .order("CASE WHEN NAME LIKE '%food%' THEN 1 WHEN NAME LIKE '%product%' THEN 2 ELSE 100 END")
-      )
+        .where(where_or_str, *orig_search_words_split)
     end
+    @videos = @videos + @or_videos
     render :index
     # @channel = Channel.find(params[:channel_id])
     # if @channel

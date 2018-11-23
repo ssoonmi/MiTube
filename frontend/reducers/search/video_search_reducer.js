@@ -7,7 +7,7 @@ const videoReducer = (state=defaultState, action) => {
   switch (action.type) {
     case RECEIVE_SEARCH_VIDEOS:
       if (action.payload.videos) {
-        return Object.keys(action.payload.videos)
+        return action.payload.videoIds
       } else {
         return defaultState;
       }
