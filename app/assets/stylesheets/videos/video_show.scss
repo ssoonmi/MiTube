@@ -204,6 +204,8 @@ video {
   'video-show-info video-show-info video-show-other-videos'
   'video-show-comments video-show-comments video-show-other-videos';
     grid-column-gap: 24px;
+    min-height: 0px;
+    min-width: 0px;
   }
 
   .video-show-video {
@@ -232,5 +234,7 @@ video {
   .video-show-other-videos {
     grid-area: video-show-other-videos;
     margin-left: 0px;
+    height: 0px;
+    overflow: visible;
   }
 }

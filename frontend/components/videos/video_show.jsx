@@ -18,6 +18,13 @@ class VideoShow extends React.Component {
     this.props.fetchNextVideoSuggestions(this.props.videoId);
   }
 
+  componentDidUpdate(oldProps) {
+    if (oldProps.videoId != this.props.videoId) {
+      this.props.resetSearch();
+      this.props.fetchNextVideoSuggestions(this.props.videoId);
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetSearch();
   }
