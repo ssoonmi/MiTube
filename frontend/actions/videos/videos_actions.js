@@ -80,3 +80,11 @@ export const deleteVideo = videoId => dispatch => {
     dispatch(receiveVideoErrors(response.responseJSON))
   );
 };
+
+
+export const fetchNextVideoSuggestions = (videoId, filters) => dispatch => {
+  return VideoAPIUtil.fetchNextVideoSuggestions(videoId, filters).then((payload)=>
+    dispatch(receiveVideos(payload)), (response) =>
+    dispatch(receiveVideoErrors(response.responseJSON))
+  );
+};

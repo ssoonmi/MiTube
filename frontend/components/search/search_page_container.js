@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import SearchPage from './search_page';
 import {fetchVideos} from '../../actions/videos/videos_actions';
+import {resetSearch} from '../../actions/search/search_actions';
 
 const msp = (state, ownProps) => {
   const searchTerms = ownProps.match.params.searchTerms;
@@ -21,7 +22,8 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch, ownProps) => {
   return {
-    fetchVideos: (filter) => dispatch(fetchVideos(filter))
+    fetchVideos: (filter) => dispatch(fetchVideos(filter)),
+    resetSearch: () => dispatch(resetSearch())
   };
 };
 

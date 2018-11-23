@@ -9,10 +9,15 @@ class HomePage extends React.Component {
     this.props.fetchChannels();
   }
 
+  componentWillUnmount() {
+    this.props.resetSearch();
+  }
+
   render() {
-    const {channels, videos} = this.props;
+    const {channelIds, videos, channels} = this.props;
     let timeNow = new Date();
-    const channelLis = channels.map((channel, idx) => {
+    const channelLis = channelIds.map((channelId, idx) => {
+      const channel = channels[channelId];
       const button = <ChannelButton
         channel={channel} classNames={"profile-btn"}/>
       const videoIds = channel.videoIds;

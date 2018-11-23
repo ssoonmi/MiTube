@@ -1,4 +1,5 @@
 import {RECEIVE_SEARCH_VIDEOS} from '../../actions/videos/videos_actions';
+import {RESET_SEARCH} from '../../actions/search/search_actions';
 
 const defaultState = [];
 
@@ -11,6 +12,8 @@ const videoReducer = (state=defaultState, action) => {
       } else {
         return defaultState;
       }
+    case RESET_SEARCH:
+      return defaultState;
     default:
       return state;
   }

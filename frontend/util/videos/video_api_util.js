@@ -46,3 +46,11 @@ export const deleteVideo = (videoId) => {
     url: `/api/videos/${videoId}`
   });
 };
+
+export const fetchNextVideoSuggestions = (videoId, filters) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/videos/${videoId}/next_suggestions/`,
+    data: filters
+  });
+};

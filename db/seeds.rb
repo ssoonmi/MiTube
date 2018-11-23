@@ -15,7 +15,7 @@ user6 = User.create!(username: "missf", password: "password", email: "missf@mail
 
 channel = Channel.create!(name: "Animals", description: "I love Animals", user_id: user1.id)
 channel = Channel.create!(name: "Food", description: "I love Food", user_id: user2.id)
-channel = Channel.create!(name: "Night", description: "I love Night", user_id: user3.id)
+channel = Channel.create!(namee: "Night", description: "I love Night", user_id: user3.id)
 channel = Channel.create!(name: "Tech", description: "I love Tech", user_id: user4.id)
 channel = Channel.create!(name: "Winter", description: "I love Winter", user_id: user5.id)
 channel = Channel.create!(name: "Woman", description: "I love Woman", user_id: user6.id)

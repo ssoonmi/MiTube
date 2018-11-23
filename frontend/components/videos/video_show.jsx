@@ -14,6 +14,11 @@ class VideoShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchVideo(this.props.videoId);
+    this.props.fetchNextVideoSuggestions(this.props.videoId);
+  }
+
+  componentWillUnmount() {
+    this.props.resetSearch();
   }
 
   render() {
@@ -26,6 +31,7 @@ class VideoShow extends React.Component {
     let publishedOn;
     let thumbnail;
     let numViews;
+    let searchLis;
     if (this.props.video) {
       title = this.props.video.title;
       description = this.props.video.description;
@@ -33,6 +39,7 @@ class VideoShow extends React.Component {
       channelIcon = this.props.channel.icon;
       thumbnail = this.props.video.thumbnail;
       numViews = this.props.video.numViews;
+      const {videos, searchVideoIds, channels} = this.props;
       const time = new Date(this.props.video.created_at);
       publishedOn = `${this.monthNames[time.getMonth()]} ${time.getDate()}, ${time.getFullYear()}`;
       renderVideo = (
@@ -43,6 +50,24 @@ class VideoShow extends React.Component {
           <source src={this.props.video.file} type="video/mp4" />
         </video>
       );
+      searchLis = searchVideoIds.map((id) => {
+        const searchedVideo = videos[id];
+        const searchedChannel = channels.searchedVideo.channel_id;
+        return (
+          <li key={id}><Link to={`/videos/${id}`}>
+            <img className="video-show-list-item-thumbnail" src={searchVideo.thumbnail}/>
+            <div className="video-show-list-item-thumbnail-time"></div>
+            <div className="video-show-list-item-info">
+              <h4>{searchedVideo.title}</h4>
+              <div className="video-show-list-item-details">
+                <div><Link to={`/channels/${searchedChannel.id}`}>{searchedChannel.name}</Link></div>
+                <span>{searchedVideo.numViews} views • </span>
+                <span>{<TimeAgo time={searchedVideo.created_at}/>}</span>
+              </div>
+            </div>
+          </Link></li>
+        )
+      });
     }
     return (
       <article className="video-show-page">
@@ -78,12 +103,7 @@ class VideoShow extends React.Component {
         <section className="video-show-other-videos video-show-video-list-container">
           <h3>Up Next</h3>
           <ul className="video-show-video-list">
-            <li>
-              <img className="video-show-video-list-video-thumbnail" />
-              <div className="video-show-video-list-video-details">
-                upcoming video side list
-              </div>
-            </li>
+            {searchLis}
           </ul>
         </section>
         {this.props.video ? <VideoShowCommentsContainer video={this.props.video}/> : null}

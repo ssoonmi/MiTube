@@ -62,6 +62,25 @@ class Api::VideosController < ApplicationController
     # end
   end
 
+  def next_suggestions
+    current_video = Video.find(params[:id])
+    if current_video
+      @videos = Video
+        .left_joins(:channel)
+        .where('videos.id != ? AND channels.id = ?', current_video.id, current_video.channel_id)
+
+      if @videos.length < 12
+        @other_videos = Video
+          .left_joins(:channel)
+          .where('videos.id != ? AND channels.id != ?', current_video.id, current_video.channel_id)
+      end
+      @videos = @videos + @other_videos
+      render '/api/videos/next_suggestions'
+    else
+      render json: ["Video not found"], status: 422
+    end
+  end
+
   def show
     @video = Video.includes(:channel, :comments, :views).find(params[:id])
     if @video

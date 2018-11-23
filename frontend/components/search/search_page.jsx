@@ -29,6 +29,10 @@ class SearchPage extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.resetSearch();
+  }
+
   render() {
     let videoLis;
     const {videos, videoIds, searchedChannel} = this.props;

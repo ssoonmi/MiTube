@@ -9,6 +9,10 @@ class ChannelShow extends React.Component {
     this.props.fetchChannel(this.props.channelId);
   }
 
+  componentWillUnmount() {
+    this.props.resetSearch();
+  }
+
   render() {
     if (this.props.channel) {
       let {channelId, owner} = this.props;
@@ -38,7 +42,7 @@ class ChannelShow extends React.Component {
                 (<Link to={`/channels/${channelId}/edit`}
                   style={
                     {
-                      backgroundColor: "blue",
+                      backgroundColor: "#1e79cb",
                       color: "white",
                       width: "130px",
                       textAlign: "center"

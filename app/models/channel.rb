@@ -15,6 +15,7 @@ class Channel < ApplicationRecord
 
   belongs_to :user
   has_many :videos
+  has_many :views, through: :videos
   has_one_attached :splash
   has_one_attached :icon
 end

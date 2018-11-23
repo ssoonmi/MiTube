@@ -1,10 +1,21 @@
 class Api::ChannelsController < ApplicationController
 
   def index
-    if params[:tags]
-      @channels = Channel.includes(:user, videos: [:views]).all
+    if params[:offset]
+      @channels = Channel
+      .includes(:user, :splash, :icon, videos: [:views, :thumbnail])
+      .left_joins(:views)
+      .group(:id)
+      .order('COUNT(views.id) DESC')
+      .limit(10)
+      .offset(Integer(params[:offset]))
     else
-      @channels = Channel.includes(:user, videos: [:views]).all
+      @channels = Channel
+      .includes(:user, videos: [:views])
+      .left_joins(:views)
+      .group(:id)
+      .order('COUNT(views.id) DESC')
+      .limit(10)
     end
     render :index
   end

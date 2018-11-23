@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       resources :views, only: [:create]
     end
 
+    get "/videos/:id/next_suggestions", to: "videos#next_suggestions", as: :videos_suggestions
+
     resources :comments, only: [:destroy, :update]
   end
 end

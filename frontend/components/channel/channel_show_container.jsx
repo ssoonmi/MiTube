@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ChannelShow from './channel_show';
 import {fetchChannel} from '../../actions/channels/channels_actions';
+import {resetSearch} from '../../actions/search/search_actions';
 
 const msp = (state, ownProps) => {
   // const username = ownProps.match.params.username;
@@ -23,7 +24,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchChannel: (channelId) => dispatch(fetchChannel(channelId))
+    fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),
+    resetSearch: () => dispatch(resetSearch),
   };
 };
 
