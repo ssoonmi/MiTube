@@ -130,7 +130,7 @@
   align-items: center;
 }
 
-.channel-videos-header h3 {
+.channel-videos-header h3, .channel-home h3 {
   font-size: 16px;
 }
 
@@ -145,4 +145,16 @@
 
 .channel-videos .video-list li {
   margin-bottom: 24px;
+}
+
+.channel-home {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 860px;
+  padding: 0 16px;
+}
+
+.channel-home-video-list {
+  width: 100%;
+  overflow-y: scroll;
 }

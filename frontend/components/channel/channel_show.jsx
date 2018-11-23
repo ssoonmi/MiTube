@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink, Route, Link} from 'react-router-dom';
 import ChannelVideosContainer from './channel_videos_container';
 import ChannelEditFormContainer from './channel_edit_form_container';
+import ChannelShowHomeContainer from './channel_show_home_container';
 import ChannelButton from '../util/channel_button';
 
 class ChannelShow extends React.Component {
@@ -15,7 +16,7 @@ class ChannelShow extends React.Component {
 
   render() {
     if (this.props.channel && this.props.user) {
-      let {channelId, owner} = this.props;
+      let {channelId, owner, channel} = this.props;
       let {name, description, splashUrl} = this.props.channel;
       let {username} = this.props.user;
 
@@ -60,6 +61,7 @@ class ChannelShow extends React.Component {
               </ul>
             </div>
           </section>
+          <Route exact path={`/channels/:channelId`} render={() => <ChannelShowHomeContainer channel={channel}/>}/>
           <Route path={`/channels/:channelId/videos`} component={ChannelVideosContainer}/>
           <Route path={`/channels/:channelId/edit`} component={ChannelEditFormContainer}/>
         </article>
