@@ -12,7 +12,7 @@ class ChannelVideos extends React.Component {
     const {channel} = this.props;
     let videoLis;
     if (channel) {
-      const videoIds = channel.videoIds;
+      const videoIds = channel.videoIds.reverse();
       videoLis = videoIds.map((videoId, videoIdx) => {
         const video = this.props.videos[videoId];
         return (

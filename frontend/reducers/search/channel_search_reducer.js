@@ -1,4 +1,4 @@
-import {RECEIVE_SEARCH_VIDEOS} from '../../actions/videos/videos_actions';
+import {RECEIVE_SEARCH_VIDEOS, RECEIVE_VIDEOS} from '../../actions/videos/videos_actions';
 import {RECEIVE_CHANNELS} from '../../actions/channels/channels_actions';
 import {RESET_SEARCH} from '../../actions/search/search_actions';
 
@@ -14,6 +14,7 @@ const channelReducer = (state=defaultState, action) => {
       } else {
         return defaultState;
       }
+    case RECEIVE_VIDEOS:
     case RECEIVE_CHANNELS:
       if (state) {
         return state.concat(action.payload.channelIds);

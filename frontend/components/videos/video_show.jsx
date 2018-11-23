@@ -5,6 +5,7 @@ import {UnAuthRoute} from '../../util/route_util';
 import VideoShowCommentsContainer from './video_show_comments_container';
 import {Link} from 'react-router-dom';
 import ChannelButton from '../util/channel_button';
+import TimeAgo from '../util/time_ago';
 
 class VideoShow extends React.Component {
   constructor(props) {
@@ -52,14 +53,14 @@ class VideoShow extends React.Component {
       );
       searchLis = searchVideoIds.map((id) => {
         const searchedVideo = videos[id];
-        const searchedChannel = channels.searchedVideo.channel_id;
+        const searchedChannel = channels[searchedVideo.channel_id];
         return (
           <li key={id}><Link to={`/videos/${id}`}>
-            <img className="video-show-list-item-thumbnail" src={searchVideo.thumbnail}/>
-            <div className="video-show-list-item-thumbnail-time"></div>
-            <div className="video-show-list-item-info">
+            <img className="video-list-item-thumbnail" src={searchedVideo.thumbnail}/>
+            <div className="video-list-item-thumbnail-time"></div>
+            <div className="video-list-item-info">
               <h4>{searchedVideo.title}</h4>
-              <div className="video-show-list-item-details">
+              <div className="video-list-item-details">
                 <div><Link to={`/channels/${searchedChannel.id}`}>{searchedChannel.name}</Link></div>
                 <span>{searchedVideo.numViews} views • </span>
                 <span>{<TimeAgo time={searchedVideo.created_at}/>}</span>

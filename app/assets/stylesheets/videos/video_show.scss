@@ -176,6 +176,26 @@ video {
   overflow: hidden;
 }
 
+.video-show-video-list {
+  margin-top: 16px;
+}
+
+.video-show-video-list li a {
+  display: flex;
+  width: 100%;
+  margin-right: 5px;
+  margin-bottom: 8px;
+}
+
+.video-show-video-list .video-list-item-thumbnail {
+  width: 210px;
+  margin-right: 8px;
+}
+
+.video-show-video-list .video-list-item-info {
+  width: auto;
+}
+
 @media only screen and (min-width: 1000px) {
   .video-show-page {
     display: grid;
