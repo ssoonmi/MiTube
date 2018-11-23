@@ -6,9 +6,13 @@ import {resetSearch} from '../../actions/search/search_actions';
 // import {fetchChannelVideos} from '../../actions/videos/videos_actions';
 
 const msp = (state, ownProps) => {
+  let channelIds = state.search.channelIds;
+  if (!channelIds) {
+    channelIds = [];
+  }
   return {
     channels: state.entities.channels,
-    channelIds: state.search.channelIds || [],
+    channelIds: channelIds,
     videos: state.entities.videos,
   };
 };
