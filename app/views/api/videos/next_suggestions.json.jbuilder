@@ -1,6 +1,6 @@
 videoIds = []
 
-@videos.uniq.each do |video|
+@videos.uniq.slice(12).each do |video|
   json.videos do
     json.partial! 'api/videos/video.json.jbuilder', video: video, thumbnail: video.thumbnail, file: video.file
   end
