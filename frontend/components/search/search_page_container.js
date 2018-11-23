@@ -8,8 +8,8 @@ import {resetSearch} from '../../actions/search/search_actions';
 const msp = (state, ownProps) => {
   const searchTerms = ownProps.match.params.searchTerms;
   let channel;
-  if (state.search.channelId) {
-    channel = state.entities.channels[state.search.channelId];
+  if (state.search.channelIds) {
+    channel = state.entities.channels[state.search.channelIds];
   }
   return {
     searchTerms,
