@@ -1,6 +1,7 @@
 videoIds = []
 
-@videos.uniq.slice(12).each do |video|
+@videos.uniq.each_with_index do |video, idx|
+  break if idx > 11
   json.videos do
     json.partial! 'api/videos/video.json.jbuilder', video: video, thumbnail: video.thumbnail, file: video.file
   end

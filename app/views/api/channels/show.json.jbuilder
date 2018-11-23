@@ -8,6 +8,9 @@ end
   end
 end
 
+most_popular = @channel.videos.left_joins(:views).group('videos.id').order('COUNT(views.id) DESC').limit(6).ids
+json.mostPopularVideoIds most_popular
+
 json.users do
   json.set! @channel.user_id do
     json.channelIds [@channel.id]
