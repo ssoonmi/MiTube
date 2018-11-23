@@ -9,6 +9,12 @@ class HomePage extends React.Component {
     this.props.fetchChannels();
   }
 
+  componentDidUpdate(oldProps) {
+    if (!this.props.channelIds) {
+      this.props.fetchChannels();
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetSearch();
   }
@@ -16,7 +22,8 @@ class HomePage extends React.Component {
   render() {
     const {channelIds, videos, channels} = this.props;
     let timeNow = new Date();
-    const channelLis = channelIds.map((channelId, idx) => {
+    let channelLis;
+    channelLis = channelIds.map((channelId, idx) => {
       const channel = channels[channelId];
       const button = <ChannelButton
         channel={channel} classNames={"profile-btn"}/>
