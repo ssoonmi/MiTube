@@ -16,10 +16,14 @@ const channelReducer = (state=defaultState, action) => {
       }
     case RECEIVE_VIDEOS:
     case RECEIVE_CHANNELS:
-      if (state) {
-        return state.concat(action.payload.channelIds);
+      if (action.payload.channelIds) {
+        if (state) {
+          return state.concat(action.payload.channelIds);
+        } else {
+          return action.payload.channelIds;
+        }
       } else {
-        return action.payload.channelIds;
+        return state;
       }
     case RESET_SEARCH:
       return defaultState;
