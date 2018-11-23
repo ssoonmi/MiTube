@@ -4,6 +4,7 @@ import VideoShowLikesContainer from './video_show_likes_container';
 import {UnAuthRoute} from '../../util/route_util';
 import VideoShowCommentsContainer from './video_show_comments_container';
 import {Link} from 'react-router-dom';
+import VideoComponent from './video_component';
 import ChannelButton from '../util/channel_button';
 import TimeAgo from '../util/time_ago';
 
@@ -46,6 +47,7 @@ class VideoShow extends React.Component {
       channelName = this.props.channel.name;
       channelIcon = this.props.channel.icon;
       thumbnail = this.props.video.thumbnail;
+      file = this.props.video.file;
       numViews = this.props.video.numViews;
       const {videos, searchVideoIds, channels} = this.props;
       const time = new Date(this.props.video.created_at);
@@ -81,7 +83,7 @@ class VideoShow extends React.Component {
       <article className="video-show-page">
         {this.props.dropdownShow}
         <div className="video-show-video video-show-page-video-container">
-          {renderVideo}
+          {this.props.video ? <VideoComponent file={file} thumbnail={thumbnail} dropdownShow={this.props.dropdownShow}/> : null}
         </div>
         <section className="video-show-info video-show-info-container">
           <div className="video-show-info-header">
