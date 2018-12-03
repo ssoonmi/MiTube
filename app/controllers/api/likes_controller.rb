@@ -2,12 +2,23 @@ class Api::LikesController < ApplicationController
 
   def create
     if current_user
-      @like = Like.new(like_params)
-      @like.user_id = current_user.id
+      @like = Like.find_by(
+        user_id: current_user.id,
+        likeable_type: params[:like][:likeable_type],
+        likeable_id: params[:like][:likeable_id],
+      )
+      past_like = 0
+      if @like
+        past_like = (@like.positive ? 1 : -1)
+        @like.positive = params[:like][:positive]
+      else
+        @like = Like.new(like_params)
+        @like.user_id = current_user.id
+      end
       if @like.save
         @value = (@like.positive ? 1 : -1)
-        @diffLikes = (@like.positive ? 1 : 0)
-        @diffDislikes = (!@like.positive ? 1 : 0)
+        @diffLikes = (@like.positive ? 1 : 0) - (past_like == 1 ? 1 : 0) 
+        @diffDislikes = (!@like.positive ? 1 : 0) - (past_like == -1 ? 1 : 0) 
         render :show
       else
         render json: @like.errors.full_messages, status: 422
@@ -19,7 +30,11 @@ class Api::LikesController < ApplicationController
 
   def destroy
     if current_user
-      @like = Like.find_by(user_id: current_user.id, likeable_type: "Video", likeable_id: params[:video_id])
+      @like = Like.find_by(
+        user_id: current_user.id, 
+        likeable_type: params[:likeable_type], 
+        likeable_id: params[:likeable_id]
+        )
       if @like
         if @like.destroy
           @value = 0

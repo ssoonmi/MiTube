@@ -1,5 +1,9 @@
 json.comments do
   json.partial! '/api/comments/comment', comment: @comment
+  json.set! @comment.id do
+    json.numLikes 0
+    json.numDislikes 0
+  end
 end
 
 if @comment.parent_comment_id

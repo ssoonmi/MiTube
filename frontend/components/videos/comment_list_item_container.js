@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CommentListItem from './comment_list_item';
-import {updateComment, removeComment} from '../../actions/comments/comments_actions';
+import {updateComment, removeComment, fetchReplies} from '../../actions/comments/comments_actions';
 
 const msp = (state, ownProps) => {
   const comment = ownProps.comment;
@@ -17,7 +17,8 @@ const msp = (state, ownProps) => {
 const mdp = (dispatch) => {
   return {
     updateComment: (comment) => dispatch(updateComment(comment)),
-    deleteComment: (commentId) => dispatch(removeComment(commentId))
+    deleteComment: (commentId) => dispatch(removeComment(commentId)),
+    fetchReplies: (commentId) => dispatch(fetchReplies(commentId)),
   };
 };
 

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
     get "/videos/:id/next_suggestions", to: "videos#next_suggestions", as: :videos_suggestions
 
-    resources :comments, only: [:destroy, :update]
+    resources :comments, only: [:destroy, :update] do
+      post '/likes', to: 'likes#create'
+      delete '/likes', to: 'likes#destroy'
+      get '/replies', to: 'comments#replies'
+    end
   end
 end

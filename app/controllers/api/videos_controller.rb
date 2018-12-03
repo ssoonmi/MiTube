@@ -82,10 +82,10 @@ class Api::VideosController < ApplicationController
   end
 
   def show
-    @video = Video.includes(:channel, :comments, :views).find(params[:id])
+    @video = Video.includes(:channel, :views, comments: [:replies, likes: [:user]]).find(params[:id])
     if @video
-      @comments = @video.comments
-      @channel = @video.channel;
+      @comments = @video.comments.where({parent_comment_id: nil})
+      @channel = @video.channel
       render :show
     else
       render json: ["Video not found"], status: 422

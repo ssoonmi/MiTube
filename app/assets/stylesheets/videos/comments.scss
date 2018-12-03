@@ -3,6 +3,7 @@
   padding-right: 24px;
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 80px;
 }
 
 .video-show-comments .profile-btn {
@@ -87,9 +88,9 @@
   background-color: #d4e9fb;
 }
 
-.video-show-comments-list li {
+.video-show-comments-list > li {
   display: flex;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   width: 100%;
 }
 
@@ -138,6 +139,7 @@
   right: 0;
   cursor: pointer;
   z-index: 1;
+  list-style: none;
 }
 
 .comment-details-menu:focus {
@@ -163,4 +165,50 @@
   // -webkit-box-orient: vertical;
   // display: -webkit-box;
   // -webkit-line-clamp: 2;
+}
+
+.comment-footer-btns {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+}
+
+.comment-likes {
+  margin-right: 24px;
+  cursor: pointer;
+}
+
+.comment-likes i {
+  margin-right: 4px; 
+}
+
+.reply-btn {
+  cursor: pointer;
+}
+
+.show-reply-btn {
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.comment-reply-form {
+  width: 100%;
+}
+
+.comment-reply {
+  margin-top: 12px;
+  display: flex;
+}
+
+.comment-replies-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.comment-replies-list > li {
+  display: flex;
+  margin-top: 16px;
 }

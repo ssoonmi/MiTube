@@ -126,6 +126,7 @@ video {
 .video-show-info-header-details-btns {
   list-style: none;
   display: flex;
+  position: relative;
 }
 
 .video-show-info-header-details-btns .video-show-likes {
@@ -134,7 +135,7 @@ video {
   padding-right: 8px;
   align-items: center;
   font-size: 18px;
-
+  justify-content: center;
   height: 40px;
 }
 
@@ -152,13 +153,17 @@ video {
 }
 
 .video-show-likes {
-  position: relative;
   cursor: pointer;
 }
 
-.video-show-likes-border {
-  width: inherit;
+.video-show-likes-border-bar {
+  pointer-events: none;
   position: absolute;
+  width: 100%;
+}
+
+.video-show-likes-border {
+  position: relative;
   bottom: -8px;
   border-bottom: 2px solid gray;
 }

@@ -14,17 +14,17 @@ class VideoShowLikes extends React.Component {
         const {numLikes, numDislikes} = this.props;
         switch (fieldVal) {
           case 1:
-            if (likeValue == 0 || likeValue == null) {
-              this.props.createLike(true, this.props.video.id);
-            } else {
+            if (likeValue == 1) {
               this.props.destroyLike(this.props.video.id);
+            } else {
+              this.props.createLike(true, this.props.video.id);
             }
             break;
           case -1:
-            if (likeValue == 0 || likeValue == null) {
-              this.props.createLike(false, this.props.video.id);
-            } else {
+            if (likeValue == -1) {
               this.props.destroyLike(this.props.video.id);
+            } else {
+              this.props.createLike(false, this.props.video.id);
             }
             break;
         }
@@ -33,17 +33,23 @@ class VideoShowLikes extends React.Component {
   }
 
   render() {
+    const {numDislikes, numLikes} = this.props;
+    const totalLikes = numDislikes + numLikes;
     return (
       <ul className="video-show-info-header-details-btns">
+        <div className="video-show-likes-border-bar">
+          <div style={{ borderColor: "#065fd4", width: `${(numLikes / totalLikes) * 100}%` }}
+            className="video-show-likes-border"></div>
+          <div style={{ width: `${(numDislikes / totalLikes) * 100}%` }}
+            className="video-show-likes-border"></div>
+        </div>
         <li onClick={this.highlight(1)} className="video-show-likes">
           <i style={this.props.like == 1 ? {color: "#065fd4"} : {}} className="fas fa-thumbs-up"></i>
           <span style={this.props.like == 1 ? {color: "#065fd4"} : {}}>{this.props.numLikes}</span>
-          <div style={this.props.like == 1 ? {borderColor: "#065fd4"} : {}} className="video-show-likes-border"></div>
         </li>
         <li onClick={this.highlight(-1)} className="video-show-likes">
           <i style={this.props.like == -1 ? {color: "#065fd4"} : {}} className="fas fa-thumbs-down"></i>
           <span style={this.props.like == -1 ? {color: "#065fd4"} : {}}>{this.props.numDislikes}</span>
-          <div style={this.props.like == -1 ? {borderColor: "#065fd4"} : {}} className="video-show-likes-border"></div>
         </li>
       </ul>
     );

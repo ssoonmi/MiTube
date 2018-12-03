@@ -4,8 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'jquery-rails' # jQuery for using ajax
-gem 'ez_download', git: 'https://github.com/OscarAlvarez8830/EZDownload.git'
 gem 'aws-sdk-s3'
+gem 'aws-sdk-core'
+gem 'ez_download', git: 'https://github.com/OscarAlvarez8830/EZDownload.git'
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
