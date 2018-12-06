@@ -20,9 +20,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  has_many :channels
-  has_many :views
+  has_many :channels, dependent: :destroy
+  has_many :views, dependent: :destroy
   has_many :videos, through: :channels
+  has_many :subscriptions, dependent: :destroy
 
   has_one_attached :icon
 

@@ -3,7 +3,7 @@ class Api::ChannelsController < ApplicationController
   def index
     if params[:offset]
       @channels = Channel
-      .includes(:user, :splash, :icon, videos: [:views, :thumbnail])
+      .includes(:user, :splash, :icon, :subscriptions, videos: [:views, :thumbnail])
       .left_joins(:views)
       .group(:id)
       .order('COUNT(views.id) DESC')
@@ -11,7 +11,7 @@ class Api::ChannelsController < ApplicationController
       .offset(Integer(params[:offset]))
     else
       @channels = Channel
-      .includes(:user, videos: [:views])
+      .includes(:user, :subscriptions, videos: [:views])
       .left_joins(:views)
       .group(:id)
       .order('COUNT(views.id) DESC')
@@ -21,12 +21,12 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.includes(:user, videos: [:views]).find(params[:id])
+    @channel = Channel.includes(:user, :subscriptions, videos: [:views]).find(params[:id])
     render :show
   end
 
   def show_by_username
-    @user = User.includes(:channels, videos: [:views]).find_by(username: params[:username])
+    @user = User.includes(:channels, :subscriptions, videos: [:views]).find_by(username: params[:username])
     @channels = @user.channels
     render :index
   end

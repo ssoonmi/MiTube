@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :channels, only: [:create, :update, :destroy, :index, :show] do
       resources :videos, only: [:create]
+      resources :subscriptions, only: [:create]
+      delete '/subscriptions', to: 'subscriptions#destroy'
     end
     resources :videos, only: [:update, :destroy, :show, :index] do
       post '/likes', to: 'likes#create'
@@ -23,5 +25,7 @@ Rails.application.routes.draw do
       delete '/likes', to: 'likes#destroy'
       get '/replies', to: 'comments#replies'
     end
+
+    resources :subscriptions, only: [:index]
   end
 end

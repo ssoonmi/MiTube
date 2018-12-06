@@ -4,6 +4,7 @@ import ChannelVideosContainer from './channel_videos_container';
 import ChannelEditFormContainer from './channel_edit_form_container';
 import ChannelShowHomeContainer from './channel_show_home_container';
 import ChannelButton from '../util/channel_button';
+import ChannelSubscriptionBtnContainer from './channel_subscription_btn_container';
 
 class ChannelShow extends React.Component {
   componentDidMount() {
@@ -51,7 +52,7 @@ class ChannelShow extends React.Component {
                   className="subscribe-button">
                   EDIT CHANNEL
                 </Link> ) :(
-                <div className="subscribe-button">SUBSCRIBE <span>{'9.7M'}</span></div>
+                <ChannelSubscriptionBtnContainer channel={this.props.channel} />
                 )
                 }
               </div>

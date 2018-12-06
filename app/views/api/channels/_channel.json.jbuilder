@@ -7,4 +7,5 @@ json.set! channel.id do
   if channel.splash.attached?
     json.splashUrl url_for(channel.splash)
   end
+  json.numSubscribers channel.subscriptions.length
 end

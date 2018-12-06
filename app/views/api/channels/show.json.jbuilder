@@ -1,5 +1,8 @@
 json.channels do
   json.partial! 'api/channels/channel', channel: @channel, videos: @channel.videos
+  json.set! @channel.id do
+    json.subscribed @channel.subscriptions.pluck(:user_id).include?(current_user.id)
+  end
 end
 
 @channel.videos.each do |video|

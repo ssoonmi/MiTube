@@ -3,6 +3,7 @@ import {RECEIVE_CHANNEL, RECEIVE_CHANNELS, REMOVE_CHANNEL} from '../../actions/c
 import {LOG_IN_USER, LOG_OUT_USER} from '../../actions/session/session_actions';
 import {RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT} from '../../actions/comments/comments_actions';
 import {merge} from 'lodash';
+import { RECEIVE_SUBSCRIPTION, RECEIVE_SUBSCRIBED_CHANNELS, REMOVE_SUBSCRIPTION } from '../../actions/subscriptions/subscriptions_actions';
 
 const UsersReducer = (state={}, action) => {
   Object.freeze(state);
@@ -79,6 +80,27 @@ const UsersReducer = (state={}, action) => {
       commentIds = newState[action.payload.userId].commentIds;
       newState[action.payload.userId].commentIds = commentIds.filter(id => id != action.payload.id);
       return state;
+    case RECEIVE_SUBSCRIPTION:
+      newState = merge({}, state);
+      if (newState[action.userId].subscribedChannelIds) {
+        newState[action.userId].subscribedChannelIds.push(action.channelId);
+      } else {
+        newState[action.userId].subscribedChannelIds = [action.channelId];
+      }
+      return newState;
+    case REMOVE_SUBSCRIPTION:
+      newState = merge({}, state);
+      if (newState[action.userId].subscribedChannelIds) {
+        newState[action.userId].subscribedChannelIds = 
+          newState[action.userId].subscribedChannelIds.filter(id => id != action.channelId);
+        return newState;
+      } else {
+        return state;
+      }
+    case RECEIVE_SUBSCRIBED_CHANNELS:
+      newState = merge({}, state);
+      newState[action.userId].subscribedChannelIds = action.payload.channelIds;
+      return newState;
     default:
       return state;
   }

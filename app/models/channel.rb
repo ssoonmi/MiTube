@@ -14,8 +14,9 @@ class Channel < ApplicationRecord
   validates :name, :description, presence: true
 
   belongs_to :user
-  has_many :videos
+  has_many :videos, dependent: :destroy
   has_many :views, through: :videos
   has_one_attached :splash
   has_one_attached :icon
+  has_many :subscriptions, dependent: :destroy
 end

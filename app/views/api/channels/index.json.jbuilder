@@ -21,6 +21,8 @@ channelIds = []
       if channel.splash.attached?
         json.splashUrl url_for(channel.splash)
       end
+      json.numSubscribers channel.subscriptions.length
+      json.subscribed channel.subscriptions.pluck(:user_id).include?(current_user.id)
     end
   end
 
