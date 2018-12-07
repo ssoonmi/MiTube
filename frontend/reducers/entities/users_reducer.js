@@ -71,7 +71,6 @@ const UsersReducer = (state={}, action) => {
           newState[action.payload.userId].commentIds = [action.payload.id];
         }
       } else {
-        debugger
         newState[action.payload.userId] = action.payload.users[action.payload.userId];
       }
       return newState;
