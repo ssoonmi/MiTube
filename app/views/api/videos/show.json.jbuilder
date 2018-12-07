@@ -1,4 +1,4 @@
-video_likes = likes("Video", @video.id);
+video_likes = likes("Video", @video.id)
 user_like = nil
 if video_likes[:user_like] && video_likes[:user_like][0]
   user_like = video_likes[:user_like][0][:positive] ? 1 : -1
@@ -28,8 +28,29 @@ json.channels do
 end
 
 if @comments
-  json.comments do
-    @comments.each do |comment|
+  @comments.each do |comment|
+    comment_likes = likes("Comment", comment.id)
+    user_like = nil
+    numLikes = nil
+    numDislikes = nil
+
+    if (comment_likes[:user_like] && comment_likes[:user_like][0])
+      user_like = comment_likes[:user_like][0][:positive] ? 1 : -1
+    end
+
+    numLikes = comment_likes[:num_likes][comment.id]
+    numLikes = 0 if numLikes.nil?
+
+    numDislikes = comment_likes[:num_dislikes][comment.id]
+    numDislikes = 0 if numDislikes.nil?
+
+    json.comments do
+      json.set! comment.id do
+        json.numLikes numLikes
+        json.numDislikes numDislikes
+        json.userLike user_like
+        json.hasReplies comment.replies.empty? ? false : true
+      end
       json.partial! '/api/comments/comment', comment: comment
     end
   end

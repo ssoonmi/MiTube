@@ -58,7 +58,7 @@ class VideoShowComments extends React.Component {
         <div className="video-show-comments-header">
           <h2>{commentLis.length} Comments</h2>
           <div className="video-show-comments-form">
-            <Link to={user && user.channelIds ? `/channels/${user.channelIds[0]}` : ""}>
+            <Link to={user && user.channelIds ? `/channels/${user.channelIds[0]}` : "/session/new"}>
               <ProfileButton user={user} size={"40px"} />
             </Link>
             <form onSubmit={this.handleSubmit.bind(this)}>

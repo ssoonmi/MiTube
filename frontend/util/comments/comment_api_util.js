@@ -27,3 +27,10 @@ export const updateComment = comment => {
     data: {comment}
   });
 };
+
+export const fetchReplies = parentCommentId => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/comments/${parentCommentId}/replies`,
+  });
+};

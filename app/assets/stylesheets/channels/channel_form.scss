@@ -18,6 +18,26 @@
   align-items: flex-start;
   width: 425px;
   margin: 0 auto;
+
+  h2 {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    width: inherit;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 15px;
+  }
+
+  input[type=text], textarea {
+    width: 425px;
+    padding: 5px 10px 6px 10px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
 }
 
 .channel-file-submit-container {
@@ -27,52 +47,77 @@
   justify-content: space-between;
   width: inherit;
   height: content;
+
+  .submit-file-container {
+    width: 200px;
+    align-self: stretch;
+  }
+
+  textarea {
+    resize: vertical;
+    height: 8em;
+  }
+
+  input[type=submit] {
+    background-color: #1e79cb;
+    color: white;
+    outline: none;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  input[type=submit]:disabled {
+    background-color: #88a7c3
+  }
 }
 
-.channel-file-submit-container  .submit-file-container {
-  width: 200px;
-  align-self: stretch;
-}
+// .channel-file-submit-container  .submit-file-container {
+//   width: 200px;
+//   align-self: stretch;
+// }
 
-.channel-form h2 {
-  display: block;
-  margin-top: 10px;
-  font-size: 18px;
-  padding-bottom: 10px;
-  width: inherit;
-  border-bottom: 1px solid lightgray;
-  margin-bottom: 15px;
-}
+// .channel-form h2 {
+//   display: block;
+//   margin-top: 10px;
+//   font-size: 18px;
+//   padding-bottom: 10px;
+//   width: inherit;
+//   border-bottom: 1px solid lightgray;
+//   margin-bottom: 15px;
+// }
 
-.channel-form input[type=text], textarea {
-  width: 425px;
-  padding: 5px 10px 6px 10px;
-  border: 1px solid gray;
-  box-sizing: border-box;
-  margin: 0;
-  font-size: 13px;
-}
+// .channel-form input[type=text], textarea {
+//   width: 425px;
+//   padding: 5px 10px 6px 10px;
+//   border: 1px solid gray;
+//   box-sizing: border-box;
+//   margin: 0;
+//   font-size: 13px;
+// }
 
-.channel-form input[type=text], textarea {
-  margin-bottom: 15px;
-}
+// .channel-form input[type=text], textarea {
+//   margin-bottom: 15px;
+// }
 
-.channel-form textarea {
-  resize: vertical;
-  height: 8em;
-}
+// .channel-form textarea {
+//   resize: vertical;
+//   height: 8em;
+// }
 
-.channel-form input[type=submit] {
-  background-color: #1e79cb;
-  color: white;
-  outline: none;
-  border: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 5px 10px;
-  font-size: 14px;
-}
+// .channel-form input[type=submit] {
+//   background-color: #1e79cb;
+//   color: white;
+//   outline: none;
+//   border: 0;
+//   border-radius: 0;
+//   margin: 0;
+//   padding: 5px 10px;
+//   font-size: 14px;
+// }
 
-.channel-form input[type=submit]:disabled {
-  background-color: #88a7c3
-}
+// .channel-form input[type=submit]:disabled {
+//   background-color: #88a7c3
+// }

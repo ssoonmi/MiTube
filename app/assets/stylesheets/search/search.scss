@@ -18,17 +18,25 @@
   display: flex;
   flex-direction: column;
   list-style: none;
+
+  li {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+
+    > a:first-of-type {
+      margin-right: 16px;
+    }
+  }
+
 }
 
-.search-list li {
-  display: flex;
-  flex-direction: row;
-  margin-top: 16px;
-}
+// .search-list li {
+// }
 
-.search-list li > a:first-of-type {
-  margin-right: 16px;
-}
+// .search-list li > a:first-of-type {
+//   margin-right: 16px;
+// }
 
 .search-list-item-thumbnail, .search-list-item-channel-btn {
   width: 246px;
@@ -52,17 +60,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .channel-button {
+    border-radius: 50%;
+    background-color: var(--profile-btn-color);
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
 }
 
-.search-list-item-channel-btn .channel-button {
-  border-radius: 50%;
-  background-color: var(--profile-btn-color);
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
+// .search-list-item-channel-btn .channel-button {
+//   border-radius: 50%;
+//   background-color: var(--profile-btn-color);
+//   font-size: 40px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   color: white;
+// }
 
 .search-list-item-description {
   margin-top: 8px;
