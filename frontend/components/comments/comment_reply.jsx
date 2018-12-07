@@ -17,7 +17,6 @@ class CommentReply extends React.Component {
 
     this.showEditMenuBtn = this.showEditMenuBtn.bind(this);
     this.hideEditMenuBtn = this.hideEditMenuBtn.bind(this);
-    this.toggleEditMenu = this.toggleEditMenu.bind(this);
     this.hideEditMenu = this.hideEditMenu.bind(this);
     this.showEditMenu = this.showEditMenu.bind(this);
     this.editComment = this.editComment.bind(this);
@@ -85,15 +84,8 @@ class CommentReply extends React.Component {
   }
 
   hideEditMenu(e) {
-    e.preventDefault();
     e.stopPropagation();
     this.setState({ showEditMenu: false });
-  }
-
-  toggleEditMenu(e) {
-    e.preventDefault();
-    const { showEditMenu } = this.state;
-    this.setState({ showEditMenu: !showEditMenu });
   }
 
   render() {

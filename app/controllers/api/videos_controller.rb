@@ -84,7 +84,7 @@ class Api::VideosController < ApplicationController
   def show
     @video = Video.includes(:channel, :views, comments: [:replies, likes: [:user]]).find(params[:id])
     if @video
-      @comments = @video.comments.where({parent_comment_id: nil})
+      @comments = @video.comments.where(parent_comment_id: nil)
       @channel = @video.channel
       render :show
     else

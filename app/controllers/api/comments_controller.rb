@@ -2,9 +2,9 @@ class Api::CommentsController < ApplicationController
   before_action :ensure_logged_in, only: [:create, :update, :destroy]
 
   def index
-    @video = Video.includes(comments: [:user, :replies]).find(params[:video_id]).where('parent_comment_id = ?', nil)
+    @video = Video.find(params[:video_id])
     if @video
-      @comments = @video.comments
+      @comments = @video.comments.includes(:user, :likes).where("parent_comment_id IS NULL")
       render :index
     else
       render json: ["Video not found"], status: 422

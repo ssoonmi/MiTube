@@ -10,21 +10,13 @@ class CommentLikes extends React.Component {
       if (!this.props.loggedIn) {
         this.props.logIn();
       } else {
-        const likeValue = this.props.like;
+        const {like, destroyLike, createLike, comment} = this.props;
         switch (fieldVal) {
           case 1:
-            if (likeValue == 1) {
-              this.props.destroyLike(this.props.comment.id);
-            } else {
-              this.props.createLike(true, this.props.comment.id);
-            }
+            like == 1 ? destroyLike(comment.id) : createLike(true, comment.id);
             break;
           case -1:
-            if (likeValue == -1) {
-              this.props.destroyLike(this.props.comment.id);
-            } else {
-              this.props.createLike(false, this.props.comment.id);
-            }
+            like == -1 ? destroyLike(comment.id) : createLike(false, comment.id);
             break;
         }
       }

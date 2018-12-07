@@ -38,22 +38,22 @@ class CommentListItem extends React.Component {
 
   update(field) {
     return (e) => {
-      this.setState({[field]: e.target.value});
+      this.setState({ [field]: e.target.value });
     }
   }
 
   editComment() {
     this.blur();
-    this.setState({editComment: true});
+    this.setState({ editComment: true });
   }
 
   cancelEditComment() {
-    this.setState({editComment: false});
+    this.setState({ editComment: false });
   }
 
   updateComment(formData) {
     this.props.updateComment(formData);
-    this.setState({editComment: false});
+    this.setState({ editComment: false });
   }
 
   deleteComment() {
@@ -76,56 +76,57 @@ class CommentListItem extends React.Component {
   showEditMenuBtn(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({showEditMenuBtn: true});
+    this.setState({ showEditMenuBtn: true });
   }
 
   hideEditMenuBtn(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({showEditMenuBtn: false});
+    this.setState({ showEditMenuBtn: false });
   }
 
   showEditMenu(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({showEditMenu: true});
+    this.setState({ showEditMenu: true });
   }
 
   hideEditMenu(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({showEditMenu: false});
+    this.setState({ showEditMenu: false });
   }
 
   toggleEditMenu(e) {
     e.preventDefault();
-    const {showEditMenu} = this.state;
-    this.setState({showEditMenu: !showEditMenu});
+    const { showEditMenu } = this.state;
+    this.setState({ showEditMenu: !showEditMenu });
   }
 
   showReplyForm(e) {
     e.preventDefault();
-    this.setState({showReplyForm: true});
+    this.setState({ showReplyForm: true });
   }
 
   hideReplyForm(e) {
     e.preventDefault();
-    this.setState({showReplyForm: false});
+    this.setState({ showReplyForm: false });
   }
 
   toggleReplies() {
-    const {showReplies, fetchedReplies} = this.state;
+    const { showReplies, fetchedReplies } = this.state;
     if (!fetchedReplies) {
       this.props.fetchReplies(this.props.comment.id).then(() => {
-        this.setState({fetchedReplies: true});
+        this.setState({ fetchedReplies: true, showReplies: !showReplies });
       });
+    } else {
+      this.setState({ showReplies: !showReplies });
     }
-    this.setState({ showReplies: !showReplies });
   }
 
   render() {
-    const {comment, user, currentUserId} = this.props;
-    const {showEditMenu, showEditMenuBtn, editComment} = this.state;
+    const { comment, user, currentUserId } = this.props;
+    const { showEditMenu, showEditMenuBtn, editComment } = this.state;
     return (
       <li
         onMouseEnter={this.showEditMenuBtn}

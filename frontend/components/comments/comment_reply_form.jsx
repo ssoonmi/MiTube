@@ -22,7 +22,6 @@ class CommentReplyForm extends React.Component {
 
   update(field) {
     return (e) => {
-      e.preventDefault();
       this.setState({[field]: e.target.value});
     };
   }

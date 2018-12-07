@@ -18,17 +18,27 @@
   align-items: flex-start;
   width: 425px;
   margin: 0 auto;
+
+  h2 {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    padding-bottom: 10px;
+    width: inherit;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 15px;
+  }
 }
 
-.video-form h2 {
-  display: block;
-  margin-top: 10px;
-  font-size: 18px;
-  padding-bottom: 10px;
-  width: inherit;
-  border-bottom: 1px solid lightgray;
-  margin-bottom: 15px;
-}
+// .video-form h2 {
+//   display: block;
+//   margin-top: 10px;
+//   font-size: 18px;
+//   padding-bottom: 10px;
+//   width: inherit;
+//   border-bottom: 1px solid lightgray;
+//   margin-bottom: 15px;
+// }
 
 .video-form-errors {
   list-style: none;
@@ -53,36 +63,66 @@
   overflow: hidden;
   box-sizing: border-box;
   cursor: pointer;
+
+  div {
+    color: gray;
+    font-size: 13px;
+    margin-top: 2px;
+    padding: 1px 5px;
+  }
+
+  .submit-file-drag {
+    color: white;
+    background-color: green;
+    border-radius: 2px;
+  }
+
+  .submit-file-hover {
+    color: red;
+  }
+
+  h4 {
+    margin-top: 10px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  input[type=file]{
+    display: none;
+  }
+
+  input[type=text] {
+    width: 425px;
+    padding: 5px 10px 6px 10px;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 13px;
+    margin-top: 20px;
+  }
+
+  textarea {
+    resize: vertical;
+    height: 8em;
+  }
+
+  input[type=submit] {
+    background-color: #1e79cb;
+    color: white;
+    outline: none;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 14px;
+
+    &:disabled {
+      background-color: #88a7c3
+    }
+  }
 }
 
-.submit-file div {
-  color: gray;
-  font-size: 13px;
-  margin-top: 2px;
-  padding: 1px 5px;
-}
-
-.submit-file .submit-file-drag {
-  color: white;
-  background-color: green;
-  border-radius: 2px;
-}
-
-.submit-file .submit-file-hover {
-  color: red;
-}
-
-.submit-file h4 {
-  margin-top: 10px;
-  font-size: 15px;
-  text-align: center;
-}
-
-.submit-file input[type=file]{
-  display: none;
-}
-
-.video-form input[type=text], textarea {
+textarea {
   width: 425px;
   padding: 5px 10px 6px 10px;
   border: 1px solid gray;
@@ -91,31 +131,67 @@
   font-size: 13px;
 }
 
-.video-form input[type=text], textarea {
-  margin-bottom: 15px;
-}
+// .submit-file div {
+//   color: gray;
+//   font-size: 13px;
+//   margin-top: 2px;
+//   padding: 1px 5px;
+// }
 
-.video-form input[type=text] {
-  margin-top: 20px;
-}
+// .submit-file .submit-file-drag {
+//   color: white;
+//   background-color: green;
+//   border-radius: 2px;
+// }
+
+// .submit-file .submit-file-hover {
+//   color: red;
+// }
+
+// .submit-file h4 {
+//   margin-top: 10px;
+//   font-size: 15px;
+//   text-align: center;
+// }
+
+// .submit-file input[type=file]{
+//   display: none;
+// }
+
+// .video-form input[type=text], textarea {
+//   width: 425px;
+//   padding: 5px 10px 6px 10px;
+//   border: 1px solid gray;
+//   box-sizing: border-box;
+//   margin: 0;
+//   font-size: 13px;
+// }
+
+// .video-form input[type=text], textarea {
+//   margin-bottom: 15px;
+// }
+
+// .video-form input[type=text] {
+//   // margin-top: 20px;
+// }
 
 
-.video-form textarea {
-  resize: vertical;
-  height: 8em;
-}
+// .video-form textarea {
+//   resize: vertical;
+//   height: 8em;
+// }
 
-.video-form input[type=submit] {
-  background-color: #1e79cb;
-  color: white;
-  outline: none;
-  border: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 5px 10px;
-  font-size: 14px;
-}
+// .video-form input[type=submit] {
+//   background-color: #1e79cb;
+//   color: white;
+//   outline: none;
+//   border: 0;
+//   border-radius: 0;
+//   margin: 0;
+//   padding: 5px 10px;
+//   font-size: 14px;
+// }
 
-.video-form input[type=submit]:disabled {
-  background-color: #88a7c3
-}
+// .video-form input[type=submit]:disabled {
+//   background-color: #88a7c3
+// }
