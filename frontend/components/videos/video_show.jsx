@@ -107,7 +107,7 @@ class VideoShow extends React.Component {
                   </Link>
                   <div>Published on {publishedOn}</div>
                 </div>
-                <div className="video-show-subscription">
+                <div className="video-show-subscribe">
                   <ChannelSubscriptionBtnContainer channel={this.props.channel}/>
                 </div>
               </div>
