@@ -5,6 +5,7 @@ import ChannelSubscriptionBtn from './channel_subscription_btn';
 
 const msp = (state, ownProps) => {
   const channel = ownProps.channel;
+  const homePage = ownProps.homePage;
   let currentUserId;
   if (state.session.id) {
     currentUserId = state.session.id;
@@ -12,6 +13,7 @@ const msp = (state, ownProps) => {
   return {
     currentUserId,
     channel,
+    homePage,
   };
 };
 

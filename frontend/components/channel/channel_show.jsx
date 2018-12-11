@@ -40,8 +40,9 @@ class ChannelShow extends React.Component {
                   <h2>{name}</h2>
                   <div></div>
                 </div>
-                {owner ?
-                (<Link to={`/channels/${channelId}/edit`}
+                <div className="channel-show-subscribe">
+                  {owner ?
+                  (<Link to={`/channels/${channelId}/edit`}
                   style={
                     {
                       backgroundColor: "#1e79cb",
@@ -49,12 +50,13 @@ class ChannelShow extends React.Component {
                       width: "130px",
                       textAlign: "center"
                     }}
-                  className="subscribe-button">
-                  EDIT CHANNEL
-                </Link> ) :(
-                <ChannelSubscriptionBtnContainer channel={this.props.channel} />
-                )
-                }
+                    className="subscribe-button">
+                    EDIT CHANNEL
+                  </Link> ) :(
+                    <ChannelSubscriptionBtnContainer channel={this.props.channel} />
+                    )
+                  }
+                </div>
               </div>
               <ul className="channel-show-nav">
                 <li><NavLink exact to={`/channels/${channelId}`}>HOME</NavLink></li>

@@ -14,6 +14,7 @@ const msp = (state, ownProps) => {
     channels: state.entities.channels,
     channelIds: channelIds,
     videos: state.entities.videos,
+    currentUserId: state.session.id,
   };
 };
 

@@ -3,13 +3,14 @@ import {Link} from 'react-router-dom';
 // import VideoThumbnail from '../videos/video_thumbnail';
 import TimeAgo from '../util/time_ago';
 import ChannelButton from '../util/channel_button';
+import ChannelSubscriptionBtnContainer from '../channel/channel_subscription_btn_container';
 
 class HomePage extends React.Component {
   componentDidMount() {
     this.props.fetchChannels();
   }
 
-  componentDidUpdate(oldProps) {
+  componentDidUpdate() {
     if (!this.props.channelIds) {
       this.props.fetchChannels();
     }
@@ -21,7 +22,6 @@ class HomePage extends React.Component {
 
   render() {
     const {channelIds, videos, channels} = this.props;
-    let timeNow = new Date();
     let channelLis;
     channelLis = channelIds.map((channelId, idx) => {
       const channel = channels[channelId];
@@ -56,6 +56,12 @@ class HomePage extends React.Component {
               <Link to={`/channels/${channel.id}`}>
                 <h3>{channel.name}</h3>
               </Link>
+              {channel.user_id == this.props.currentUserId ? 
+                ( null ) : 
+                (<div className="home-page-subscribe">
+                  <ChannelSubscriptionBtnContainer homePage={true} channel={channel}/>
+                </div>)
+              }
             </div>
             <ul className="video-list">
               {videoLis}

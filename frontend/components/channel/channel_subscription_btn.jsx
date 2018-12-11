@@ -24,17 +24,18 @@ class ChannelSubscriptionBtn extends React.Component {
   }
   
   render() {
-    const {channel} = this.props;
+    const {channel, homePage} = this.props;
     return (
       <>
         { channel.subscribed ? 
-          (
-            <div
-              className="unsubscribe-button"
-              onClick={this.unsubscribe}>
-              SUBSCRIBED <span>{channel.numSubscribers}</span>
-            </div>
-          ) : (
+          homePage ? 
+              (null) :
+              (<div
+                className="unsubscribe-button"
+                onClick={this.unsubscribe}>
+                SUBSCRIBED <span>{channel.numSubscribers}</span>
+              </div>)
+          : (
             <div 
               className="subscribe-button"
               onClick={this.subscribe}>

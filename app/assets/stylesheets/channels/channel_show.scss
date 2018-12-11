@@ -80,24 +80,42 @@
 //   font-size: 14px;
 // }
 
+.channel-show-subscribe, .home-page-subscribe {
+  margin-left: auto;
+  margin-right: 4px;
+  width: 148px;
+  cursor: pointer;
+}
+
 .subscribe-button {
   background-color: red;
   color: white;
-  width: 148px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.007px;
   font-size: 14px;
-  height: auto;
-  margin-left: auto;
-  padding: 10px 16px;
-  margin-right: 4px;
   text-transform: capitalize;
-  // cursor: pointer;
+  padding: 10px 16px;
   display: flex;
   justify-content: space-between;
-
   span {
     color: #ffffffd9;
+    font-weight: 400;
+  }
+}
+
+.unsubscribe-button {
+  background-color: #eeeeee;
+  color: hsla(0, 0%, 7%, 0.6);
+  font-weight: 500;
+  letter-spacing: 0.007px;
+  font-size: 14px;
+  text-transform: capitalize;
+  // cursor: pointer;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-weight: 500;
   }
 }
 
