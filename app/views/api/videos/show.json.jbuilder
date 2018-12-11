@@ -24,6 +24,8 @@ end
 json.channels do
   json.set! @channel.id do
     json.extract! @channel, :id, :name, :description, :user_id
+    json.subscribed @channel.subscriptions.pluck(:user_id).include?(current_user.id)
+    json.numSubscribers @channel.subscriptions.length
   end
 end
 

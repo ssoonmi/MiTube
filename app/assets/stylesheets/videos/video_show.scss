@@ -140,8 +140,16 @@ video {
     font-size: 13px;
     color: #11111199;
   }
+
 }
 
+.video-show-subscription {
+  margin-left: auto;
+  margin-right: 4px;
+  width: 148px;
+  cursor: pointer;
+  align-self: flex-end;
+}
 // .video-show-info-details-channel-name h3 {
 //   font-weight: 500;
 // }

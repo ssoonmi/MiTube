@@ -1,12 +1,12 @@
 import React from 'react';
 // import {Player } from 'video-react';
 import VideoShowLikesContainer from './video_show_likes_container';
-import {UnAuthRoute} from '../../util/route_util';
 import VideoShowCommentsContainer from './video_show_comments_container';
 import {Link} from 'react-router-dom';
 import VideoComponent from './video_component';
 import ChannelButton from '../util/channel_button';
 import TimeAgo from '../util/time_ago';
+import ChannelSubscriptionBtnContainer from '../channel/channel_subscription_btn_container';
 
 class VideoShow extends React.Component {
   constructor(props) {
@@ -79,46 +79,53 @@ class VideoShow extends React.Component {
         )
       });
     }
-    return (
-      <article className="video-show-page">
-        {this.props.dropdownShow}
-        <div className="video-show-video video-show-page-video-container">
-          {this.props.video ? <VideoComponent file={file} thumbnail={thumbnail} dropdownShow={this.props.dropdownShow}/> : null}
-        </div>
-        <section className="video-show-info video-show-info-container">
-          <div className="video-show-info-header">
-            <h2>{title}</h2>
-            <div className="video-show-info-header-details">
-              <div>{numViews} views</div>
-              {this.props.video ? <VideoShowLikesContainer video={this.props.video}/> : null}
-            </div>
+    if (this.props.video) {
+      return (
+        <article className="video-show-page">
+          {this.props.dropdownShow}
+          <div className="video-show-video video-show-page-video-container">
+            {this.props.video ? <VideoComponent file={file} thumbnail={thumbnail} dropdownShow={this.props.dropdownShow}/> : null}
           </div>
-          <div className="video-show-info-details">
-            <div className="video-show-info-details-channel">
-              <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
-                <ChannelButton
-                classNames={"video-show-info-details-channel-icon"}
-                channel={this.props.channel}/>
-              </Link>
-              <div className="video-show-info-details-channel-name">
-                <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
-                  <h3>{channelName}</h3>
-                </Link>
-                <div>Published on {publishedOn}</div>
+          <section className="video-show-info video-show-info-container">
+            <div className="video-show-info-header">
+              <h2>{title}</h2>
+              <div className="video-show-info-header-details">
+                <div>{numViews} views</div>
+                {this.props.video ? <VideoShowLikesContainer video={this.props.video}/> : null}
               </div>
             </div>
-            <div className="video-show-info-details-description">{description}</div>
-          </div>
-        </section>
-        <section className="video-show-other-videos video-show-video-list-container">
-          <h3>Up Next</h3>
-          <ul className="video-show-video-list">
-            {searchLis}
-          </ul>
-        </section>
-        {this.props.video ? <VideoShowCommentsContainer video={this.props.video}/> : null}
-      </article>
-    );
+            <div className="video-show-info-details">
+              <div className="video-show-info-details-channel">
+                <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
+                  <ChannelButton
+                  classNames={"video-show-info-details-channel-icon"}
+                  channel={this.props.channel}/>
+                </Link>
+                <div className="video-show-info-details-channel-name">
+                  <Link to={this.props.channel ? `/channels/${this.props.channel.id}` : ""}>
+                    <h3>{channelName}</h3>
+                  </Link>
+                  <div>Published on {publishedOn}</div>
+                </div>
+                <div className="video-show-subscription">
+                  <ChannelSubscriptionBtnContainer channel={this.props.channel}/>
+                </div>
+              </div>
+              <div className="video-show-info-details-description">{description}</div>
+            </div>
+          </section>
+          <section className="video-show-other-videos video-show-video-list-container">
+            <h3>Up Next</h3>
+            <ul className="video-show-video-list">
+              {searchLis}
+            </ul>
+          </section>
+          {this.props.video ? <VideoShowCommentsContainer video={this.props.video}/> : null}
+        </article>
+      );
+    } else {
+      return (null);
+    }
   }
 }
 
