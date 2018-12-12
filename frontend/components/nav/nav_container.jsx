@@ -2,6 +2,7 @@ import Nav from './nav';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/session/session_actions';
 import {showDropdown, hideDropdown} from '../../actions/ui/dropdown_actions';
+import {showSideNav, hideSideNav} from '../../actions/ui/side_nav_actions';
 import {withRouter} from 'react-router-dom';
 
 const msp = (state, ownProps) => {
@@ -21,7 +22,8 @@ const msp = (state, ownProps) => {
     email,
     iconUrl,
     channelId,
-    history: ownProps.history
+    history: ownProps.history,
+    sideNav: state.ui.sideNav,
   };
 };
 
@@ -29,6 +31,8 @@ const mdp = dispatch => ({
   logout: () => dispatch(logout()),
   showDropdown: () => dispatch(showDropdown()),
   hideDropdown: () => dispatch(hideDropdown()),
+  showSideNav: () => dispatch(showSideNav()),
+  hideSideNav: () => dispatch(hideSideNav()),
 });
 
 export default withRouter(connect(msp, mdp)(Nav));
