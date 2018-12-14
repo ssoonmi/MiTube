@@ -6,6 +6,7 @@ import {createView} from '../../actions/views/views_actions';
 import VideoShow from './video_show';
 import {resetSearch} from '../../actions/search/search_actions';
 import {showSideNavModal, hideSideNavModal, hideSideNav} from '../../actions/ui/side_nav_actions';
+import {closeModal} from '../../actions/ui/modal_actions';
 
 const msp = (state, ownProps) => {
   const videoId = ownProps.match.params.videoId;
@@ -39,6 +40,7 @@ const mdp = dispatch => {
     showSideNavModal: () => dispatch(showSideNavModal()),
     hideSideNavModal: () => dispatch(hideSideNavModal()),
     hideSideNav: () => dispatch(hideSideNav()),
+    closeModal: () => dispatch(closeModal()),
   };
 };
 

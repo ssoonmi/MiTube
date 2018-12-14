@@ -9,8 +9,10 @@ import VideoShowContainer from '../videos/video_show_container';
 import ChannelCreationFormContainer from '../channel/channel_creation_form_container';
 import UserEditFormContainer from '../user/user_edit_form_container';
 import SearchPageContainer from '../search/search_page_container';
-import HistoryPageContainer from '../history/history_page_container';
 import HomePage from '../home_page/home_page_container';
+import TrendingPageContainer from '../search/trending_page_container';
+import LikedVideosPageContainer from '../search/liked_videos_page_container';
+import HistoryPageContainer from '../search/history_page_container';
 
 class MainSwitches extends React.Component {
   render() {
@@ -21,10 +23,12 @@ class MainSwitches extends React.Component {
         <UnAuthRoute exact path="/channels/new" component={ChannelCreationFormContainer} />
         <UnAuthRoute exact path="/channels/:channelId/videos/new" component={VideoUploadFormContainer} />
         <UnAuthRoute exact path="/user/edit" component={UserEditFormContainer} />
-        <UnAuthRoute path="/history/" component={HistoryPageContainer} />
         <Route path="/channels/:channelId" component={ChannelShowContainer} />
         <Route path="/videos/:videoId" render={(props) => <VideoShowContainer {...props} />} />
         <Route path="/search/:searchTerms" component={SearchPageContainer} />
+        <Route path="/trending/" component={TrendingPageContainer} />
+        <UnAuthRoute path="/liked_videos/" component={LikedVideosPageContainer} />
+        <UnAuthRoute path="/history/" component={HistoryPageContainer} />
         <Route path="/" component={HomePage} />
       </Switch>
     );

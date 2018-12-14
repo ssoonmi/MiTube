@@ -1,6 +1,76 @@
 class Api::VideosController < ApplicationController
 
   def index
+    if params[:search]
+      search
+    elsif params[:trending]
+      trending
+    elsif params[:history]
+      history
+    elsif params[:likedVideos]
+      liked_videos
+    else
+      render json: ["Filters not defined properly"], status: 400
+    end
+    
+    # @channel = Channel.find(params[:channel_id])
+    # if @channel
+    #   @videos = @channel.videos.includes(:file, :thumbnail)
+    #   render :index
+    # else
+    #   render json: ["Channel not found"], status: 422
+    # end
+  end
+
+  def history
+    offset = 0
+    offset = Integer(params[:offset]) if params[:offset]
+    limit = 100
+    limit = Integer(params[:limit]) if params[:limit]
+    @videos = Video
+      .joins(:views)
+      .limit(Integer(limit))
+      .offset(offset)
+      .where('views.user_id = ?', current_user.id)
+      .order('views.created_at DESC')
+    @videos.includes(:thumbnail, :channels, :views)
+    render :index
+  end
+
+  def liked_videos
+    offset = 0
+    offset = Integer(params[:offset]) if params[:offset]
+    limit = 100
+    limit = Integer(params[:limit]) if params[:limit]
+    @videos = Video
+      .joins(:likes)
+      .limit(Integer(limit))
+      .offset(offset)
+      .where('likes.user_id = ? AND likes.positive = true', current_user.id)
+      .order('likes.created_at DESC')
+    @videos.includes(:thumbnail, :channels, :views)
+    render :index
+  end
+
+  def trending
+    offset = 0
+    offset = Integer(params[:offset]) if params[:offset]
+    limit = 100
+    limit = Integer(params[:limit]) if params[:limit]
+    days_ago = 7
+    days_ago = Integer(params[:daysAgo]) if params[:daysAgo]
+    @videos = Video
+      .joins(:views)
+      .limit(Integer(limit))
+      .offset(offset)
+      .where('views.created_at > ?', DateTime.now - days_ago)
+      .group('videos.id')
+      .order('COUNT(views.created_at) DESC')
+    @videos.includes(:thumbnail, :channels, :views)
+    render :index
+  end
+
+  def search
     search = params[:search].downcase
     search_words = search.split(" ")
     numWords = search_words.length
@@ -53,13 +123,6 @@ class Api::VideosController < ApplicationController
     end
     @videos = @videos + @or_videos
     render :index
-    # @channel = Channel.find(params[:channel_id])
-    # if @channel
-    #   @videos = @channel.videos.includes(:file, :thumbnail)
-    #   render :index
-    # else
-    #   render json: ["Channel not found"], status: 422
-    # end
   end
 
   def next_suggestions

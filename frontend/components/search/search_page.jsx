@@ -12,11 +12,9 @@ class SearchPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchVideos({
-      search: this.props.searchTerms,
-      limit: 20,
-      offset: this.state.offset,
-    });
+    const {filter} = this.props;
+    filter.offset = this.state.offset;
+    this.props.fetchVideos(filter);
     this.setState({offset: this.state.offset + 20});
   }
 
@@ -90,8 +88,22 @@ class SearchPage extends React.Component {
         </li>
       )
     }
+    const { filter: { trending, likedVideos, history } } = this.props;
+    let header = null;
+    if (trending) {
+      header = "Trending";
+    } else if (likedVideos) {
+      header = "Liked Videos";
+    } else if (history) {
+      header = "Watch History";
+    }
     return (
       <article className="gray-background search-page">
+        {header ? 
+          (
+            <h2>{header}</h2>
+          ) : (null)
+        }
         {searchedChannel ?
           (
             <>

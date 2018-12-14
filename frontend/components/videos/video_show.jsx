@@ -31,6 +31,7 @@ class VideoShow extends React.Component {
   componentWillUnmount() {
     this.props.hideSideNav();
     this.props.hideSideNavModal();
+    this.props.closeModal();
     this.props.resetSearch();
   }
 

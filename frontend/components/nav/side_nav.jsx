@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 class SideNav extends React.Component {
   componentDidMount() {
@@ -50,24 +50,24 @@ class SideNav extends React.Component {
               ): (null)
             }
             <section>
-              <Link to="/">
+              <NavLink exact to="/">
                 <li className="side-nav-link">
                   <span><i className="fas fa-home"></i></span>
                   Home
                 </li>
-              </Link>
-              <Link to="/">
+              </NavLink>
+              <NavLink to="/trending">
                 <li className="side-nav-link">
                   <span><i className="fas fa-fire"></i></span>
                   Trending
                 </li>
-              </Link>
-              <Link to="/">
+              </NavLink>
+              <NavLink to="/subscriptions">
                 <li className="side-nav-link">
                   <span><i className="fas fa-users"></i></span>
                   Subscriptions
                 </li>
-              </Link>
+              </NavLink>
             </section>
             <section>
               <li className="side-nav-li-header">
@@ -75,18 +75,18 @@ class SideNav extends React.Component {
                   LIBRARY
                 </Link>
               </li>
-              <Link to="/">
+              <NavLink to="/history">
                 <li className="side-nav-link">
                   <span><i className="fas fa-history"></i></span>
                   History
                 </li>
-              </Link>
-              <Link to="/">
+              </NavLink>
+              <NavLink to="/liked_videos">
                 <li className="side-nav-link">
                   <span><i className="fas fa-thumbs-up"></i></span>
                   Liked videos
                 </li>
-              </Link>
+              </NavLink>
             </section>
             <section>
               <li className="side-nav-li-header">

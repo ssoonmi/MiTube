@@ -1,9 +1,8 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import SearchPage from './search_page';
-import {fetchVideos} from '../../actions/videos/videos_actions';
-import {resetSearch} from '../../actions/search/search_actions';
+import { fetchVideos } from '../../actions/videos/videos_actions';
+import { resetSearch } from '../../actions/search/search_actions';
 
 const msp = (state, ownProps) => {
   const searchTerms = ownProps.match.params.searchTerms;
@@ -13,7 +12,7 @@ const msp = (state, ownProps) => {
   }
   return {
     filter: {
-      search: searchTerms,
+      trending: true,
       limit: 20,
     },
     videos: state.entities.videos,
