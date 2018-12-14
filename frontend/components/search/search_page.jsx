@@ -17,6 +17,7 @@ class SearchPage extends React.Component {
       limit: 20,
       offset: this.state.offset,
     });
+    this.setState({offset: this.state.offset + 20});
   }
 
   componentDidUpdate(oldProps) {
@@ -24,8 +25,9 @@ class SearchPage extends React.Component {
       this.props.fetchVideos({
         search: this.props.searchTerms,
         limit: 20,
-        offset: this.state.offset,
+        offset: 0,
       });
+      this.setState({offset: 20});
     }
   }
 

@@ -15,6 +15,8 @@ class VideoShow extends React.Component {
   }
 
   componentDidMount() {
+    this.props.hideSideNav();
+    this.props.showSideNavModal();
     this.props.fetchVideo(this.props.videoId);
     this.props.fetchNextVideoSuggestions(this.props.videoId);
   }
@@ -27,6 +29,8 @@ class VideoShow extends React.Component {
   }
 
   componentWillUnmount() {
+    this.props.hideSideNav();
+    this.props.hideSideNavModal();
     this.props.resetSearch();
   }
 

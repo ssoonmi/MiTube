@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {logout} from '../../actions/session/session_actions';
 import {showDropdown, hideDropdown} from '../../actions/ui/dropdown_actions';
 import {showSideNav, hideSideNav} from '../../actions/ui/side_nav_actions';
+import {openModal, closeModal} from '../../actions/ui/modal_actions';
 import {withRouter} from 'react-router-dom';
 
 const msp = (state, ownProps) => {
@@ -24,6 +25,7 @@ const msp = (state, ownProps) => {
     channelId,
     history: ownProps.history,
     sideNav: state.ui.sideNav,
+    showModal: state.ui.sideNavModal,
   };
 };
 
@@ -31,8 +33,22 @@ const mdp = dispatch => ({
   logout: () => dispatch(logout()),
   showDropdown: () => dispatch(showDropdown()),
   hideDropdown: () => dispatch(hideDropdown()),
-  showSideNav: () => dispatch(showSideNav()),
-  hideSideNav: () => dispatch(hideSideNav()),
+  showSideNav: (showModal) => {
+    return () => {
+      dispatch(showSideNav());
+      if (showModal) {
+        dispatch(openModal());
+      }
+    };
+  },
+  hideSideNav: (hideModal) => {
+    return () => {
+      dispatch(hideSideNav());
+      if (hideModal) {
+        dispatch(closeModal());
+      }
+    }
+  },
 });
 
 export default withRouter(connect(msp, mdp)(Nav));

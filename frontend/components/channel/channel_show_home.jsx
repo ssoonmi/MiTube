@@ -15,7 +15,6 @@ class ChannelShowHome extends React.Component {
             <div className="video-list-item-info">
               <h4>{video.title}</h4>
               <div className="video-list-item-details">
-                <div><Link to={`/channels/${channel.id}`}>{channel.name}</Link></div>
                 <span>{video.numViews} views • </span>
                 <span>{<TimeAgo time={video.created_at}/>}</span>
               </div>

@@ -8,6 +8,7 @@ import ChannelSubscriptionBtnContainer from './channel_subscription_btn_containe
 
 class ChannelShow extends React.Component {
   componentDidMount() {
+    this.props.hideSideNavModal();
     this.props.fetchChannel(this.props.channelId);
   }
 

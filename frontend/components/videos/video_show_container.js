@@ -5,6 +5,7 @@ import {fetchVideo, fetchNextVideoSuggestions} from '../../actions/videos/videos
 import {createView} from '../../actions/views/views_actions';
 import VideoShow from './video_show';
 import {resetSearch} from '../../actions/search/search_actions';
+import {showSideNavModal, hideSideNavModal, hideSideNav} from '../../actions/ui/side_nav_actions';
 
 const msp = (state, ownProps) => {
   const videoId = ownProps.match.params.videoId;
@@ -34,7 +35,10 @@ const mdp = dispatch => {
     fetchVideo: (videoId) => dispatch(fetchVideo(videoId)),
     createView: (videoId) => dispatch(createView(videoId)),
     resetSearch: () => dispatch(resetSearch()),
-    fetchNextVideoSuggestions: (videoId) => dispatch(fetchNextVideoSuggestions(videoId))
+    fetchNextVideoSuggestions: (videoId) => dispatch(fetchNextVideoSuggestions(videoId)),
+    showSideNavModal: () => dispatch(showSideNavModal()),
+    hideSideNavModal: () => dispatch(hideSideNavModal()),
+    hideSideNav: () => dispatch(hideSideNav()),
   };
 };
 

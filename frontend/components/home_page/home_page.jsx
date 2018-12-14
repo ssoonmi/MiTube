@@ -7,6 +7,9 @@ import ChannelSubscriptionBtnContainer from '../channel/channel_subscription_btn
 
 class HomePage extends React.Component {
   componentDidMount() {
+    this.props.closeModal();
+    this.props.showSideNav();
+    this.props.hideSideNavModal();
     this.props.fetchChannels();
   }
 
@@ -21,7 +24,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const {channelIds, videos, channels} = this.props;
+    const {channelIds, videos, channels, sideNav, modal} = this.props;
     let channelLis;
     channelLis = channelIds.map((channelId, idx) => {
       const channel = channels[channelId];
@@ -73,10 +76,12 @@ class HomePage extends React.Component {
       }
     });
     return (
-      <div className="gray-background">
-        <ul className="channels-list">
-          {channelLis}
-        </ul>
+      <div className="home-page gray-background">
+        <div className="home-page-content">
+          <ul className="channels-list">
+            {channelLis}
+          </ul>
+        </div>
       </div>
     )
   }

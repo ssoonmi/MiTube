@@ -4,8 +4,8 @@ import NavSearchContainer from './nav_search_container';
 
 const Nav = (props) => {
   // <div><i className="fas fa-bars fa-2x"></i></div>
-  const {sideNav, showSideNav, hideSideNav} = props;
-  const toggleSideNav = sideNav ? hideSideNav : showSideNav;
+  const {sideNav, showSideNav, hideSideNav, showModal} = props;
+  const toggleSideNav = sideNav ? hideSideNav(showModal) : showSideNav(showModal);
 
   return (
     <nav>

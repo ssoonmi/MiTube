@@ -1,6 +1,9 @@
 import React from 'react';
 import NavContainer from '../nav/nav_container';
-import {AuthRoute, UnAuthRoute} from '../../util/route_util';
+import {Route, Switch} from 'react-router-dom';
+import ModalContainer from '../modal/modal_container';
+import SideNavContainer from '../nav/side_nav_container';
+import { AuthRoute, UnAuthRoute } from '../../util/route_util';
 import SessionFormContainer from '../session/session_form_container';
 import UserFormContainer from '../session/user_form_container';
 import ChannelShowContainer from '../channel/channel_show_container';
@@ -11,32 +14,25 @@ import UserEditFormContainer from '../user/user_edit_form_container';
 import SearchPageContainer from '../search/search_page_container';
 import HistoryPageContainer from '../history/history_page_container';
 import HomePage from '../home_page/home_page_container';
-import {Route, Switch} from 'react-router-dom';
 
-const App = () => {
-  return (
-    <>
-      <Switch>
-        <Route exact path="/users/new" render={()=>(null)}/>
-        <Route exact path="/session/new" render={()=>(null)}/>
-        <Route path="/" render={() => <NavContainer /> } />
-      </Switch>
-      <main>
+import Main from './main_container';
+
+class App extends React.Component {
+  render() {
+    return (
+      <>
         <Switch>
-          <AuthRoute exact path="/users/new" component={UserFormContainer} />
-          <AuthRoute exact path="/session/new" component={SessionFormContainer} />
-          <UnAuthRoute exact path="/channels/new" component={ChannelCreationFormContainer} />
-          <UnAuthRoute exact path="/channels/:channelId/videos/new" component={VideoUploadFormContainer}/>
-          <UnAuthRoute exact path="/user/edit" component={UserEditFormContainer}/>
-          <UnAuthRoute path="/history/" component={HistoryPageContainer}/>
-          <Route path="/channels/:channelId" component={ChannelShowContainer}/>
-          <Route path="/videos/:videoId" render={(props) => <VideoShowContainer {...props}/>} />
-          <Route path="/search/:searchTerms" component={SearchPageContainer}/>
-          <Route path="/" component={HomePage}/>
+          <Route exact path="/users/new" render={()=>(null)}/>
+          <Route exact path="/session/new" render={()=>(null)}/>
+          <Route path="/" render={() => <NavContainer /> } />
         </Switch>
-      </main>
-    </>
-  );
+        <ModalContainer />
+        <SideNavContainer />
+        <Main/>
+      </>
+    );
+  }
 };
+
 
 export default App;

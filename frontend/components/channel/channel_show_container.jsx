@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import ChannelShow from './channel_show';
 import {fetchChannel} from '../../actions/channels/channels_actions';
 import {resetSearch} from '../../actions/search/search_actions';
+import {showSideNav, hideSideNav, hideSideNavModal} from '../../actions/ui/side_nav_actions';
+import {closeModal} from '../../actions/ui/modal_actions';
 
 const msp = (state, ownProps) => {
   // const username = ownProps.match.params.username;
@@ -25,7 +27,11 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     fetchChannel: (channelId) => dispatch(fetchChannel(channelId)),
-    resetSearch: () => dispatch(resetSearch),
+    resetSearch: () => dispatch(resetSearch()),
+    closeModal: () => dispatch(closeModal()),
+    showSideNav: () => dispatch(showSideNav()),
+    hideSideNav: () => dispatch(hideSideNav()),
+    hideSideNavModal: () => dispatch(hideSideNavModal()),
   };
 };
 

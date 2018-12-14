@@ -60,6 +60,16 @@ nav {
   z-index: 1;
 }
 
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
 .sign-in-btn {
   color: #2793e6;
   font-weight: 400;
@@ -70,6 +80,7 @@ nav {
 main {
   margin: 0 auto;
   margin-top: 56px;
+  position: relative;
 }
 
 .channel-list {

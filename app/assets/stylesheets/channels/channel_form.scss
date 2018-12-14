@@ -38,25 +38,6 @@
     font-size: 13px;
     margin-bottom: 15px;
   }
-}
-
-.channel-file-submit-container {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
-  width: inherit;
-  height: content;
-
-  .submit-file-container {
-    width: 200px;
-    align-self: stretch;
-  }
-
-  textarea {
-    resize: vertical;
-    height: 8em;
-  }
 
   input[type=submit] {
     background-color: #1e79cb;
@@ -71,6 +52,20 @@
 
   input[type=submit]:disabled {
     background-color: #88a7c3
+  }
+}
+
+.channel-file-submit-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: inherit;
+  height: content;
+
+  .submit-file-container {
+    width: 200px;
+    align-self: stretch;
   }
 }
 
