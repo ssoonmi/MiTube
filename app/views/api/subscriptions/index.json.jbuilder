@@ -15,4 +15,4 @@ channelIds = []
   channelIds << channel.id
 end
 
-json.channelids channelIds
+json.channelIds channelIds

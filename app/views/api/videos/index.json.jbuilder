@@ -24,6 +24,12 @@ if @channel
         json.iconUrl url_for(channel.icon)
       end
       json.numVideos channel.videos.count
+      json.numSubscribers channel.subscriptions.length
+      if current_user
+        json.subscribed channel.subscriptions.pluck(:user_id).include?(current_user.id)
+      else
+        json.subscribed false
+      end
     end
   end
   json.searchedChannelId channel.id

@@ -24,6 +24,12 @@ class User < ApplicationRecord
   has_many :views, dependent: :destroy
   has_many :videos, through: :channels
   has_many :subscriptions, dependent: :destroy
+  has_many :subscribed_channels,
+    through: :subscriptions,
+    source: :channel
+  has_many :subscribed_videos,
+    through: :subscribed_channels,
+    source: :videos
 
   has_one_attached :icon
 

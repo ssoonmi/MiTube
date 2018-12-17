@@ -21,6 +21,10 @@ class Video < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :views, dependent: :destroy
 
+  has_many :subscriptions,
+    through: :channel,
+    source: :subscriptions
+
   has_one_attached :file
   has_one_attached :thumbnail
 end

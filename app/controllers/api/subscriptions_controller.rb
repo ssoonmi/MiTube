@@ -2,7 +2,7 @@ class Api::SubscriptionsController < ApplicationController
   before_action :ensure_logged_in, only: [:index, :create, :destroy]
 
   def index
-    @channels = current_user.subscriptions.where('channel_id = ?', params[:channel_id])
+    @channels = current_user.subscribed_channels
     render :index
   end
 

@@ -77,7 +77,7 @@ class SearchPage extends React.Component {
             <div className="search-list-item-info">
               <h4>{channel.name}</h4>
               <div className="search-list-item-details">
-                <span>1,000,000 subscribers • </span>
+                <span>{channel.numSubscribers} subscribers • </span>
                 <span>{channel.numVideos} videos</span>
                 <div className="search-list-item-description">
                   {channel.description}

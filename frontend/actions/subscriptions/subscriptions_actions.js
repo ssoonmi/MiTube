@@ -14,7 +14,7 @@ export const createSubscription = (userId, channelId) => dispatch => {
   }, (response) => console.log(response.responseJSON));
 };
 
-export const fetchSubscribedChannels = (userId) => dispatch => {
+export const fetchSubscriptions = (userId) => dispatch => {
   return SubscriptionAPIUtil.fetchSubscribedChannels().then((payload) => {
     dispatch({
       type: RECEIVE_SUBSCRIBED_CHANNELS,

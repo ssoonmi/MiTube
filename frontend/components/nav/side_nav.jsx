@@ -1,10 +1,15 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import ChannelButton from '../util/channel_button';
 
 class SideNav extends React.Component {
   componentDidMount() {
-    if (this.props.showModal) {
-      this.props.openModal();
+    const {showModal, openModal, currentUserId, fetchSubscriptions, subscribedChannelIds} = this.props;
+    if (showModal) {
+      openModal();
+    }
+    if (currentUserId && !subscribedChannelIds) {
+      fetchSubscriptions(currentUserId);
     }
   }
 
@@ -34,8 +39,22 @@ class SideNav extends React.Component {
   }
 
   render() {
-    const {showModal, hideSideNav, sideNav} = this.props;
+    const {showModal, hideSideNav, sideNav, currentUserId, subscribedChannelIds, channels} = this.props;
     const modalStyle = showModal ? {top: '0', height: '100vh'} : {};
+    let subscriptions;
+    if (currentUserId && subscribedChannelIds) {
+      subscriptions = subscribedChannelIds.map((id) => {
+        const channel = channels[id];
+        return (
+          <Link key={id} to={`/channels/${id}`}>
+            <li className="side-nav-link">
+              <span><ChannelButton classNames={"profile-btn"} channel={channel} size={'24px'}/></span>
+              {channel.name}
+            </li>
+          </Link>
+        );
+      });
+    }
     if (sideNav) {
       return (
         <aside className="side-nav" style={modalStyle}>
@@ -90,10 +109,11 @@ class SideNav extends React.Component {
             </section>
             <section>
               <li className="side-nav-li-header">
-                <Link to="/">
+                <Link to="/subscriptions">
                   SUBSCRIPTIONS
                 </Link>
               </li>
+              {subscriptions}
             </section>
           </ul>
         </aside>

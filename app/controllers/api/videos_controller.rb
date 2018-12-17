@@ -9,6 +9,8 @@ class Api::VideosController < ApplicationController
       history
     elsif params[:likedVideos]
       liked_videos
+    elsif params[:subscriptions]
+      subscriptions
     else
       render json: ["Filters not defined properly"], status: 400
     end
@@ -20,6 +22,23 @@ class Api::VideosController < ApplicationController
     # else
     #   render json: ["Channel not found"], status: 422
     # end
+  end
+
+  def subscriptions
+    offset = 0
+    offset = Integer(params[:offset]) if params[:offset]
+    limit = 100
+    limit = Integer(params[:limit]) if params[:limit]
+    days_ago = 7
+    days_ago = Integer(params[:daysAgo]) if params[:daysAgo]
+    @videos = Video
+      .joins(:subscriptions)
+      .limit(Integer(limit))
+      .offset(offset)
+      .where('subscriptions.user_id = ? AND videos.created_at > ?', current_user.id, DateTime.now - days_ago)
+      .order('videos.created_at DESC')
+    @videos.includes(:thumbnail, :channels, :views)
+    render :index
   end
 
   def history

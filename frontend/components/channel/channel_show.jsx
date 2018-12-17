@@ -12,6 +12,14 @@ class ChannelShow extends React.Component {
     this.props.fetchChannel(this.props.channelId);
   }
 
+  componentDidUpdate(oldProps) {
+    const {channelId, fetchChannel, resetSearch} = this.props;
+    if (oldProps.channelId != channelId) {
+      resetSearch();
+      fetchChannel(channelId);
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetSearch();
   }

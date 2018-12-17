@@ -15,6 +15,7 @@ const msp = (state, ownProps) => {
       history: true,
       limit: 20,
     },
+    searchTerms,
     videos: state.entities.videos,
     searchedChannel: channel,
     channels: state.entities.channels,

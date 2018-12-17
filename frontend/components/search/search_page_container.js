@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import SearchPage from './search_page';
@@ -16,6 +15,7 @@ const msp = (state, ownProps) => {
       search: searchTerms,
       limit: 20,
     },
+    searchTerms,
     videos: state.entities.videos,
     searchedChannel: channel,
     channels: state.entities.channels,

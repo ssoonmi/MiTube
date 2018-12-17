@@ -15,6 +15,7 @@ const msp = (state, ownProps) => {
       trending: true,
       limit: 20,
     },
+    searchTerms,
     videos: state.entities.videos,
     searchedChannel: channel,
     channels: state.entities.channels,

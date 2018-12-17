@@ -13,6 +13,7 @@ import HomePage from '../home_page/home_page_container';
 import TrendingPageContainer from '../search/trending_page_container';
 import LikedVideosPageContainer from '../search/liked_videos_page_container';
 import HistoryPageContainer from '../search/history_page_container';
+import SubscriptionsPageContainer from '../subscriptions/subscriptions_page_container';
 
 class MainSwitches extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class MainSwitches extends React.Component {
         <Route path="/trending/" component={TrendingPageContainer} />
         <UnAuthRoute path="/liked_videos/" component={LikedVideosPageContainer} />
         <UnAuthRoute path="/history/" component={HistoryPageContainer} />
+        <UnAuthRoute path="/subscriptions/" component={SubscriptionsPageContainer} />
         <Route path="/" component={HomePage} />
       </Switch>
     );
